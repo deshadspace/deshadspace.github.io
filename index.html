@@ -158,34 +158,46 @@
   <footer>
     <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
   </footer>
-
-    <!-- Rocket Cursor Script -->
-  <script>
+  <!-- Rocket Cursor Script -->
+    <script>
     const rocket = document.getElementById('rocket');
-  
-    document.addEventListener('mousemove', (e) => {
-      // Move the rocket image
-      rocket.style.left = e.clientX + 'px';
-      rocket.style.top = e.clientY + 'px';
-  
-      // Add fuel trail slightly behind and below
-      const trail = document.createElement('div');
-      trail.className = 'trail';
-  
-      // Offset values for bottom-left effect
-      const offsetX = -10; // move trail left
-      const offsetY = 6;  // move trail down
-  
-      trail.style.left = e.clientX + offsetX + 'px';
-      trail.style.top = e.clientY + offsetY + 'px';
-  
-      document.body.appendChild(trail);
-  
-      // Remove trail after animation
-      setTimeout(() => trail.remove(), 600);
-    });
-  </script>
+    let lastX = 0;
+    let lastY = 0;
 
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Move the rocket
+        rocket.style.left = x + 'px';
+        rocket.style.top = y + 'px';
+
+        // Calculate angle for rotation
+        const deltaX = x - lastX;
+        const deltaY = y - lastY;
+        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+        // Adjust for initial 45° tilt
+        const correctedAngle = angle + 45;
+
+        // Rotate the rocket
+        rocket.style.transform = `translate(-50%, -50%) rotate(${correctedAngle}deg)`;
+
+        // Update last positions
+        lastX = x;
+        lastY = y;
+
+        // Rocket trail slightly behind and below
+        const trail = document.createElement('div');
+        trail.className = 'trail';
+        const offsetX = -10; // move trail left
+        const offsetY = 6;   // move trail slightly down (your preferred offset)
+        trail.style.left = x + offsetX + 'px';
+        trail.style.top = y + offsetY + 'px';
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 600);
+    });
+    </script>
 
 </body>
 </html>

@@ -6,13 +6,33 @@
   <title>DeshadSpace</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     /* Reset & fonts */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
     body { background: #0f0f0f; color: #fff; cursor: none; overflow-x: hidden; }
 
-    /* Container */
-    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+    /* Background image */
+    .background {
+      background: url('indexback.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); /* adjust opacity */
+      z-index: 1;
+    }
+    .content {
+      position: relative;
+      z-index: 2; /* keep text above overlay */
+      color: white;
+      text-align: center;
+      padding-top: 20%;
+    }
 
     /* Navigation */
     nav {
@@ -36,8 +56,6 @@
     /* Headings */
     h1 { font-size: 3em; color: #00bcd4; margin-bottom: 20px; }
     h2 { font-size: 2em; margin: 20px 0; color: #ff9800; }
-
-    /* Paragraphs */
     p { font-size: 1.2em; line-height: 1.6; margin-bottom: 30px; color: #ccc; }
 
     /* Buttons */
@@ -57,22 +75,6 @@
       transform: scale(1.1) rotate(-1deg);
       background: #ff9800;
     }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      height: 300%;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      pointer-events: none;
-    }
-    .btn:hover::before {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
 
     /* Cards */
     .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
@@ -82,18 +84,10 @@
       padding: 20px;
       width: 250px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    .card:hover {
-      transform: translateY(-5px) rotateX(3deg) rotateY(3deg);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-    }
-
-    /* Latest Project */
-    #latest-project { margin-top: 40px; }
 
     /* Footer */
     footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
@@ -108,7 +102,6 @@
       transform: translate(-50%, -50%);
     }
 
-    /* Rocket trail */
     .trail {
       position: fixed;
       width: 7px;
@@ -123,48 +116,9 @@
 
     @keyframes fade { to { opacity: 0; transform: translateY(20px); } }
   </style>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    .background {
-      background: url('indexback.jpg') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
-      position: relative;
-    }
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4); /* change opacity here */
-      z-index: 1;
-    }
-    .content {
-      position: relative;
-      z-index: 2; /* keep text/rocket above overlay */
-      color: white;
-      text-align: center;
-      padding-top: 20%;
-    }
-  </style>
-
-  <body>
-    <div class="background">
-      <div class="overlay"></div>
-      <div class="content">
-        <h1>Welcome to DeshadSpace 🚀</h1>
-        <p>Exploring Space, Code, and Beyond</p>
-      </div>
-    </div>
-  </body>
-
-
 </head>
-<body>
 
+<body>
   <!-- Rocket Cursor -->
   <img src="rocket.png" id="rocket" class="rocket-cursor">
 
@@ -177,14 +131,17 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- Hero Section -->
-  <div class="container">
-    <h1>Welcome to DeshadSpace!</h1>
-    <p>Hello! I’m Deshad. I love technology, coding, photography, and creating awesome projects. This is my personal space on the web.</p>
-    <a href="#latest-work" class="btn">Latest Work</a>
+  <!-- Background Hero Section -->
+  <div class="background">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Welcome to DeshadSpace 🚀</h1>
+      <p>Exploring Space, Code, and Beyond</p>
+      <a href="#latest-work" class="btn">Latest Work</a>
+    </div>
   </div>
 
-  <!-- Latest work -->
+  <!-- Latest Work -->
   <section id="latest-work" class="container">
     <h2>Latest Project</h2>
     <div class="card">
@@ -194,52 +151,34 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
   </footer>
 
-    <!-- Rocket Cursor Script -->
+  <!-- Rocket Cursor Script -->
   <script>
     const rocket = document.getElementById('rocket');
-    let lastX = 0;
-    let lastY = 0;
+    let lastX = 0, lastY = 0;
 
     document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
+      const x = e.clientX, y = e.clientY;
+      rocket.style.left = x + 'px';
+      rocket.style.top = y + 'px';
 
-        // Move the rocket
-        rocket.style.left = x + 'px';
-        rocket.style.top = y + 'px';
+      const deltaX = x - lastX, deltaY = y - lastY;
+      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+      rocket.style.transform = `translate(-50%, -50%) rotate(${angle + 45}deg)`;
 
-        // Calculate angle for rotation
-        const deltaX = x - lastX;
-        const deltaY = y - lastY;
-        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+      lastX = x; lastY = y;
 
-        // Adjust for initial 45° tilt
-        const correctedAngle = angle + 45;
-
-        // Rotate the rocket
-        rocket.style.transform = `translate(-50%, -50%) rotate(${correctedAngle}deg)`;
-
-        // Update last positions
-        lastX = x;
-        lastY = y;
-
-        // Rocket trail slightly behind and below
-        const trail = document.createElement('div');
-        trail.className = 'trail';
-        const offsetX = -10; // left
-        const offsetY = 0;  // down
-        trail.style.left = x + offsetX + 'px';
-        trail.style.top = y + offsetY + 'px';
-        document.body.appendChild(trail);
-        setTimeout(() => trail.remove(), 600);
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = (x - 10) + 'px';
+      trail.style.top = (y) + 'px';
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 600);
     });
   </script>
-
-
-
 </body>
 </html>

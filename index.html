@@ -30,9 +30,30 @@
       color: #fff;
       text-decoration: none;
       border-radius: 30px;
-      transition: 0.3s;
+      transition: transform 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .btn:hover { background: #ff9800; }
+    .btn:hover {
+      transform: scale(1.1) rotate(-1deg);
+      background: #ff9800;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .btn:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
 
     /* Sections */
     section { padding: 60px 0; }
@@ -45,9 +66,31 @@
       padding: 20px;
       width: 250px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      transition: 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.7); }
+    .card:hover {
+      transform: translateY(-5px) rotateX(3deg) rotateY(3deg);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,188,212,0.15) 0%, transparent 80%);
+      transform: scale(0);
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      pointer-events: none;
+    }
+    .card:hover::before {
+      transform: scale(1);
+      opacity: 1;
+    }
 
     /* Footer */
     footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; }

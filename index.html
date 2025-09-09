@@ -159,23 +159,33 @@
     <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
   </footer>
 
-  <!-- Rocket Cursor Script -->
+    <!-- Rocket Cursor Script -->
   <script>
     const rocket = document.getElementById('rocket');
-
+  
     document.addEventListener('mousemove', (e) => {
+      // Move the rocket image
       rocket.style.left = e.clientX + 'px';
       rocket.style.top = e.clientY + 'px';
-
-      // Add fuel trail
+  
+      // Add fuel trail slightly behind and below
       const trail = document.createElement('div');
       trail.className = 'trail';
-      trail.style.left = e.clientX + 'px';
-      trail.style.top = e.clientY + 'px';
+  
+      // Offset values for bottom-left effect
+      const offsetX = -10; // move trail left
+      const offsetY = 10;  // move trail down
+  
+      trail.style.left = e.clientX + offsetX + 'px';
+      trail.style.top = e.clientY + offsetY + 'px';
+  
       document.body.appendChild(trail);
+  
+      // Remove trail after animation
       setTimeout(() => trail.remove(), 600);
     });
   </script>
+
 
 </body>
 </html>

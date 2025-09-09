@@ -5,10 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeshadSpace | About</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Base Theme */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body { background: #0f0f0f; color: #fff; overflow-x: hidden; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #1a1a1a;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ff9800; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+    h1 { font-size: 2.5em; color: #00bcd4; text-align: center; margin-bottom: 40px; }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 30px;
+      border-left: 3px solid #00bcd4;
+    }
+    .milestone {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 20px;
+    }
+    .milestone::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 5px;
+      width: 15px;
+      height: 15px;
+      background: #ff9800;
+      border-radius: 50%;
+      border: 2px solid #0f0f0f;
+    }
+    .milestone h2 {
+      font-size: 1.5em;
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+    .milestone p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+    .milestone a {
+      color: #00bcd4;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .milestone a:hover { color: #ff9800; }
+    .milestone img {
+      max-width: 120px;
+      margin-top: 10px;
+      border-radius: 10px;
+      display: block;
+    }
+
+    footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      .milestone h2 { font-size: 1.3em; }
+      .milestone p { font-size: 1em; }
+      .milestone img { max-width: 90px; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -19,8 +102,78 @@
 
   <main>
     <h1>About Me</h1>
-    <p>Hello! I’m Deshad, an engineer passionate about control systems, robotics, and creative content creation.</p>
+    <div class="timeline">
+
+      <!-- School -->
+      <div class="milestone">
+        <h2>2016 – Advanced Levels</h2>
+        <p>Completed A/Ls in Physics stream at 
+          <a href="https://dsscoba.org/about-us/d-s-senanayake-college/">D.S. Senanayake College, Colombo 07</a>.
+        </p>
+        <a href="https://dsscoba.org/about-us/d-s-senanayake-college/">
+          <img src="images/ds-college.png" alt="D.S. Senanayake College">
+        </a>
+      </div>
+
+      <!-- University -->
+      <div class="milestone">
+        <h2>2017 – 2023 | University of Peradeniya</h2>
+        <p>Graduated with BSc. Engineering (Hons), specialized in 
+          <a href="https://eng.pdn.ac.lk/mie/">Manufacturing & Industrial Engineering</a>.
+        </p>
+        <a href="https://eng.pdn.ac.lk/">
+          <img src="images/peradeniya.png" alt="University of Peradeniya">
+        </a>
+      </div>
+
+      <!-- Industrial Training -->
+      <div class="milestone">
+        <h2>2020 – Industrial Training</h2>
+        <p>Industrial Training at <a href="https://udayaindustries.lk">Udaya Industries</a>.</p>
+        <a href="https://udayaindustries.lk">
+          <img src="images/udaya-industries.png" alt="Udaya Industries">
+        </a>
+      </div>
+
+      <div class="milestone">
+        <h2>2022 – Industrial Training</h2>
+        <p>3 months Industrial Training at <a href="https://www.martin-bauer-hayleys.com">Martin Bauer Hayleys Pvt. Ltd.</a>.</p>
+        <a href="https://www.martin-bauer-hayleys.com">
+          <img src="images/martin-bauer.png" alt="Martin Bauer Hayleys">
+        </a>
+      </div>
+
+      <!-- Career -->
+      <div class="milestone">
+        <h2>2023 – 2024 | Freelance Manufacturing Engineer</h2>
+        <p>Worked as a freelance manufacturing engineer providing solutions across projects.</p>
+        <a href="https://www.upwork.com/">
+          <img src="images/freelance.png" alt="Upwork">
+        </a>
+      </div>
+
+      <div class="milestone">
+        <h2>Aug 2024 – May 2025 | Mechanical Site Engineer</h2>
+        <p>Worked at <a href="https://www.dgsl.lk/">Dockyard General Engineering Services (Pvt) Ltd</a>.</p>
+        <a href="https://www.dgsl.lk/">
+          <img src="images/dges.png" alt="Dockyard General Engineering Services">
+        </a>
+      </div>
+
+      <div class="milestone">
+        <h2>May 2025 – Present | Freelance AI Engineer</h2>
+        <p>Currently working as a freelance AI Engineer on <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">Upwork</a>.</p>
+        <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">
+          <img src="images/freelance.png" alt="Upwork">
+        </a>
+      </div>
+
+    </div>
   </main>
+
+  <footer>
+    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+  </footer>
 
 </body>
 </html>

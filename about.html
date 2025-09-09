@@ -36,29 +36,48 @@
     .timeline {
       position: relative;
       margin: 20px 0;
-      padding-left: 30px;
-      border-left: 3px solid #00bcd4;
+      padding-left: 40px;
     }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 20px;
+      width: 4px;
+      height: 100%;
+      background: #00bcd4;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
     .milestone {
       position: relative;
-      margin-bottom: 40px;
-      padding-left: 20px;
+      margin-bottom: 50px;
+      padding-left: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
+
+    /* Glowing node points */
     .milestone::before {
       content: '';
       position: absolute;
-      left: -10px;
+      left: -2px;
       top: 5px;
-      width: 15px;
-      height: 15px;
+      width: 18px;
+      height: 18px;
       background: #ff9800;
       border-radius: 50%;
       border: 2px solid #0f0f0f;
+      box-shadow: 0 0 8px rgba(255,152,0,0.6);
+      transition: all 0.3s ease;
     }
+
     .milestone h2 {
       font-size: 1.5em;
       color: #ff9800;
       margin-bottom: 10px;
+      transition: color 0.3s ease;
     }
     .milestone p {
       font-size: 1.1em;
@@ -69,6 +88,7 @@
       color: #00bcd4;
       font-weight: 700;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
     .milestone a:hover { color: #ff9800; }
     .milestone img {
@@ -76,6 +96,18 @@
       margin-top: 10px;
       border-radius: 10px;
       display: block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover effects */
+    .milestone:hover::before {
+      background: #00bcd4;
+      box-shadow: 0 0 15px #00bcd4, 0 0 30px #00bcd4;
+    }
+    .milestone:hover h2 { color: #00bcd4; }
+    .milestone:hover img {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,188,212,0.6);
     }
 
     footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
@@ -155,7 +187,7 @@
       <div class="milestone">
         <h2>Aug 2024 – May 2025 | Mechanical Site Engineer</h2>
         <p>Worked at <a href="https://www.dgsl.lk/">Dockyard General Engineering Services (Pvt) Ltd</a>.</p>
-        <a href="https://www.dgsl.lk/">
+        <a href="https://www.dges.lk/">
           <img src="images/dges.png" alt="Dockyard General Engineering Services">
         </a>
       </div>

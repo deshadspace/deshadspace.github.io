@@ -56,6 +56,27 @@
     }
     a:hover { color: #ff9800; }
 
+    /* Button Styling */
+    .btn-download {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #fff;
+      background: #00bcd4;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,188,212,0.6);
+    }
+    .btn-download:hover {
+      background: #ff9800;
+      box-shadow: 0 0 15px rgba(255,152,0,0.8), 0 0 25px rgba(255,152,0,0.6);
+    }
+
     footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
 
     /* Responsive */
@@ -63,6 +84,7 @@
       h1 { font-size: 2em; }
       .contact-img { max-width: 150px; }
       p { font-size: 1em; }
+      .btn-download { font-size: 1em; padding: 10px 20px; }
     }
   </style>
 </head>
@@ -86,6 +108,9 @@
     <p>Email: <a href="mailto:deshadsenevirathne@gmail.com">deshadsenevirathne@gmail.com</a></p>
     <p>GitHub: <a href="https://github.com/deshadspace" target="_blank">github.com/deshadspace</a></p>
     <p>LinkedIn: <a href="https://www.linkedin.com/in/deshad-senevirathne" target="_blank">linkedin.com/in/deshad-senevirathne</a></p>
+
+    <!-- Download CV Button -->
+    <a href="documents/d_senevirathne_eng_cv_sept2025" download class="btn-download">📄 Download CV</a>
   </main>
 
   <footer>

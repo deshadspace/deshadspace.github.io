@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DeshadSpace | Contact</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     /* Base Theme */
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
@@ -43,18 +46,23 @@
       box-shadow: 0 0 15px rgba(0,188,212,0.6);
     }
 
-    p {
-      font-size: 1.2em;
-      margin: 10px 0;
-      color: #ccc;
+    /* Contact icons */
+    .contact-icons {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
     }
-    a {
+    .contact-icons a {
+      font-size: 2em;
       color: #00bcd4;
-      text-decoration: none;
-      font-weight: 700;
-      transition: color 0.3s ease;
+      transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     }
-    a:hover { color: #ff9800; }
+    .contact-icons a:hover {
+      color: #ff9800;
+      transform: scale(1.2);
+      text-shadow: 0 0 12px rgba(255,152,0,0.7);
+    }
 
     /* Button Styling */
     .btn-download {
@@ -83,8 +91,8 @@
     @media (max-width: 768px) {
       h1 { font-size: 2em; }
       .contact-img { max-width: 150px; }
-      p { font-size: 1em; }
       .btn-download { font-size: 1em; padding: 10px 20px; }
+      .contact-icons a { font-size: 1.7em; }
     }
   </style>
 </head>
@@ -105,12 +113,15 @@
     <h1>Contact Me</h1>
     <img src="images/convocation.jpeg" alt="Convocation" class="contact-img">
 
-    <p>Email: <a href="mailto:deshadsenevirathne@gmail.com">deshadsenevirathne@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/deshadspace" target="_blank">github.com/deshadspace</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/deshad-senevirathne" target="_blank">linkedin.com/in/deshad-senevirathne</a></p>
+    <!-- Contact Icons -->
+    <div class="contact-icons">
+      <a href="mailto:deshadsenevirathne@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/deshadspace" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/deshad-senevirathne" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
 
     <!-- Download CV Button -->
-    <a href="documents/d_senevirathne_eng_cv_sept2025" download class="btn-download">📄 Download CV</a>
+    <a href="documents/d_senevirathne_eng_cv_sept2025.pdf" download class="btn-download">📄 Download CV</a>
   </main>
 
   <footer>

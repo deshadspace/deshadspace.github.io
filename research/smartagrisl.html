@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeshadSpace | Smart Agriculture</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Reset & fonts */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+    body { background: #0f0f0f; color: #fff; cursor: none; overflow-x: hidden; }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #1a1a1a;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      color: #00bcd4;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ff9800; }
+
+    /* Section */
+    .container {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #00bcd4;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0,188,212,0.7);
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      text-align: justify;
+    }
+
+    strong { color: #ff9800; }
+
+    /* LinkedIn icon */
+    .linkedin {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 1.1em;
+      text-decoration: none;
+      color: #00bcd4;
+      transition: color 0.3s ease;
+    }
+    .linkedin:hover { color: #ff9800; }
+    .linkedin i {
+      margin-right: 8px;
+      font-size: 1.5em;
+    }
+
+    /* Rocket cursor */
+    .rocket-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+    }
+
+    .trail {
+      position: fixed;
+      width: 7px;
+      height: 7px;
+      background: #ff9800;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      z-index: 9999;
+      animation: fade 0.6s linear forwards;
+    }
+
+    @keyframes fade { to { opacity: 0; transform: translateY(20px); } }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      color: #777;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Rocket Cursor -->
+  <img src="../rocket.png" id="rocket" class="rocket-cursor">
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../projects.html">Projects</a>
+    <a href="../research.html">Research</a>
+    <a href="../articles.html">Articles</a>
+    <a href="../downloads.html">Downloads</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+
+  <!-- Research Section -->
+  <div class="container">
+    <h1>Smart Agriculture – Paddy Yield Prediction for Sri Lanka</h1>
+    <p>
+      Paddy (<i>Oryza sativa</i>) is a widely consumed staple food worldwide, feeding over 50% of the global population.  
+      Sri Lanka has been cultivating paddy for centuries, and with the rapid increase in population, <strong>forecasting paddy yield becomes essential</strong>.  
+    </p>
+    <p>
+      This research aims to predict Sri Lankan district-wise paddy yield using openly available data: 
+      <strong>CHIRPS 2.0, NASA POWER APIs, Sri Lankan Rice Research and Development Institute’s PH and Salinity Maps, and Paddy Statistics 
+      from the Department of Census and Statistics – Sri Lanka</strong> for local agro zones.  
+    </p>
+    <p>
+      For the three major agro-climatic zones and 25 administrative districts, data from 2004 to 2024 were collected 
+      for the two harvesting seasons “Yala” and “Maha”. The target variable is the total paddy production per district (in metric tons), 
+      ranging from <strong>185 MT (Mannar, 2006 Yala)</strong> to <strong>530,356 MT (Anuradhapura, 2019-2020 Maha)</strong>.
+    </p>
+    <p>
+      Using the crop calendar template from the Department of Agriculture – Sri Lanka, end-to-end crop harvesting simulations were constructed.  
+      By combining these simulations with climate variables, soil properties, and historical yield records, we created 12 heterogeneous datasets.  
+      These were used to train 12 base models, whose out-of-fold predictions fed into two meta models, and finally a stacked meta model.  
+    </p>
+    <p>
+      The final model achieved <strong>RMSE = 3,535 MT</strong>, <strong>R² = 0.9986</strong>, and <strong>NRMSE = 0.76%</strong>, 
+      demonstrating high accuracy in predicting district-level seasonal paddy yield.  
+      This highlights the potential of <strong>open data + machine learning</strong> for sustainable agriculture in Sri Lanka.  
+    </p>
+    <p class="note">
+    <em>This abstract was submitted to IECAG 2025.</em>
+    </p>
+
+    <!-- Tag collaborator -->
+    <a class="linkedin" href="https://www.linkedin.com/in/achinthi-premasiri-3a47141b9/" target="_blank">
+      <i class="fab fa-linkedin"></i> Research with Ms. Achinthi Premasiri (BSc, University of Jaffna; MPhil – University of Ruhuna)
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+  </footer>
+
+  <!-- Rocket Cursor Script -->
+  <script>
+    const rocket = document.getElementById('rocket');
+    let lastX = window.innerWidth / 2;
+    let lastY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX, y = e.clientY;
+      rocket.style.left = x + 'px';
+      rocket.style.top = y + 'px';
+
+      const deltaX = x - lastX, deltaY = y - lastY;
+      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+      rocket.style.transform = `translate(-50%, -50%) rotate(${angle + 45}deg)`;
+
+      lastX = x; lastY = y;
+
+      const trail = document.createElement('div');
+      trail.className = 'trail';
+      trail.style.left = (x - 4) + 'px';
+      trail.style.top = (y - 4) + 'px';
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 600);
+    });
+  </script>
+
+</body>
+</html>

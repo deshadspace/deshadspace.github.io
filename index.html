@@ -76,8 +76,21 @@
       background: #ff9800;
     }
 
-    /* Cards */
-    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        /* Center the section title */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    /* Cards Layout */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* center cards horizontally */
+      gap: 20px; /* spacing between cards */
+    }
+
     .card {
       background: #1a1a1a;
       border-radius: 15px;
@@ -87,7 +100,16 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
+
+    /* Hover Effect */
+    .card:hover {
+      transform: translateY(-10px) scale(1.05); /* lift + slight zoom */
+      box-shadow: 0 15px 40px rgba(0, 255, 255, 0.6); /* neon cyan glow */
+    }
+
+
 
     /* Footer */
     footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
@@ -145,42 +167,261 @@
 
   <!-- Latest Work -->
   <section id="latest-work" class="container">
-    <h2>Latest Project</h2>
-    <div class="card">
-      <h3>SENTINODE X</h3>
-      <p>Satellite Telemetry Simulator.</p>
-      <a href="projects/automated-crane.html" class="btn">Read More</a>
+    <h2 class="section-title">Latest Work</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>SENTINODE X</h3>
+        <p>Satellite Telemetry Simulator.</p>
+        <a href="projects/sentinodex.html" class="btn">Read More</a>
+      </div>
+
+      <div class="card">
+        <h3>GRACE + ML </h3>
+        <p>GRACE data downscaling for the Sri Lankan Region.</p>
+        <a href="research/GRACESL.html" class="btn">Read More</a>
+      </div>
+
+      <div class="card">
+        <h3>Smart Agriculture</h3>
+        <p>Paddy Yield Prediction For Sri Lanka using Stacked Ensemble Learning.</p>
+        <a href="research/smartagrisl.html" class="btn">Read More</a>
+      </div>
+
+      <div class="card">
+        <h3>Asteroid Mining</h3>
+        <p>Remote Resource Estimation of Near Earth Asteroids.</p>
+        <a href="research/asteroidest.html" class="btn">Read More</a>
+      </div>
     </div>
   </section>
+
+  
+
 
   <!-- Footer -->
   <footer>
     <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
   </footer>
 
+  <style>
+  .bullet { 
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgb(108, 255, 2);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 3s linear; /* fade effect */
+  }
+  .bullet.fade {
+    opacity: 0;
+  }
+  </style>
+
+
+
   <!-- Rocket Cursor Script -->
   <script>
-    const rocket = document.getElementById('rocket');
-    let lastX = 0, lastY = 0;
+  const rocket = document.getElementById('rocket');
+  let lastX = window.innerWidth / 2;
+  let lastY = window.innerHeight / 2;
+  let invasionStarted = false;
+  let rocketAlive = true; // track rocket state
+  let hoverTimer;
+  const aliens = [];
+  const alienBullets = [];
+  const rocketBullets = [];
 
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX, y = e.clientY;
+  // Track mouse for rocket cursor and trail
+  document.addEventListener('mousemove', (e) => {
+    const x = e.clientX, y = e.clientY;
+
+    if (rocketAlive) {
       rocket.style.left = x + 'px';
       rocket.style.top = y + 'px';
 
       const deltaX = x - lastX, deltaY = y - lastY;
       const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
       rocket.style.transform = `translate(-50%, -50%) rotate(${angle + 45}deg)`;
+    }
 
-      lastX = x; lastY = y;
+    lastX = x;
+    lastY = y;
 
-      const trail = document.createElement('div');
-      trail.className = 'trail';
-      trail.style.left = (x - 10) + 'px';
-      trail.style.top = (y) + 'px';
-      document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 600);
+    // Rocket/mouse trail
+    const trail = document.createElement('div');
+    trail.className = 'trail';
+    trail.style.left = (x - 4) + 'px';
+    trail.style.top = (y - 4) + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 600);
+  });
+
+  // Hover detection to start invasion
+  const bg = document.querySelector('.background');
+  bg.addEventListener('mouseenter', () => { 
+    hoverTimer = setTimeout(startInvasion, 30000); 
+  });
+  bg.addEventListener('mouseleave', () => { clearTimeout(hoverTimer); });
+
+  // Start invasion
+  function startInvasion() {
+    if (invasionStarted) return;
+    invasionStarted = true;
+    spawnAliens(7);
+    requestAnimationFrame(updateAliens);
+  }
+
+  // Spawn aliens
+  function spawnAliens(count) {
+    for (let i = 0; i < count; i++) {
+      const alien = document.createElement('img');
+      alien.src = 'images/alien.png'; 
+      alien.className = 'alien';
+      alien.style.width = '30px';
+      alien.style.height = '30px';
+      alien.style.position = 'absolute';
+      alien.style.top = Math.random() * window.innerHeight / 2 + 'px';
+      alien.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(alien);
+
+      aliens.push({
+        el: alien,
+        dx: (Math.random() * 2 - 1) * 2,
+        dy: (Math.random() * 2 - 1) * 2
+      });
+    }
+  }
+
+  // Update aliens and bullets
+  function updateAliens() {
+    aliens.forEach((alienObj, idx) => {
+      const { el } = alienObj;
+      let top = parseFloat(el.style.top);
+      let left = parseFloat(el.style.left);
+
+      top += alienObj.dy;
+      left += alienObj.dx;
+
+      // Bounce edges
+      if (top < 0 || top > window.innerHeight-30) alienObj.dy *= -1;
+      if (left < 0 || left > window.innerWidth-30) alienObj.dx *= -1;
+
+      el.style.top = top + 'px';
+      el.style.left = left + 'px';
+
+      // Random shooting
+      if (Math.random() < 0.02 && rocketAlive) shootAlienBullet(el);
     });
+
+    // Update alien bullets
+    alienBullets.forEach((b, idx) => {
+      b.el.style.top = parseFloat(b.el.style.top) + b.vy + 'px';
+      b.el.style.left = parseFloat(b.el.style.left) + b.vx + 'px';
+
+      if (rocketAlive) {
+        const rRect = rocket.getBoundingClientRect();
+        const bRect = b.el.getBoundingClientRect();
+        if (!(bRect.right < rRect.left || bRect.left > rRect.right ||
+              bRect.bottom < rRect.top || bRect.top > rRect.bottom)) {
+          
+          rocket.style.display = 'none';
+          rocketAlive = false;
+        }
+      }
+
+      if (parseFloat(b.el.style.top) < 0 || parseFloat(b.el.style.top) > window.innerHeight ||
+          parseFloat(b.el.style.left) < 0 || parseFloat(b.el.style.left) > window.innerWidth) {
+        b.el.remove();
+        alienBullets.splice(idx,1);
+      }
+    });
+
+    // Update rocket bullets
+    rocketBullets.forEach((b, idx) => {
+      b.el.style.left = parseFloat(b.el.style.left) + b.dx + 'px';
+      b.el.style.top = parseFloat(b.el.style.top) + b.dy + 'px';
+
+      aliens.forEach((alienObj, aIdx) => {
+        const aRect = alienObj.el.getBoundingClientRect();
+        const bRect = b.el.getBoundingClientRect();
+        if (!(bRect.right < aRect.left || bRect.left > aRect.right ||
+              bRect.bottom < aRect.top || bRect.top > aRect.bottom)) {
+          alienObj.el.remove();
+          aliens.splice(aIdx,1);
+          b.el.remove();
+          rocketBullets.splice(idx,1);
+        }
+      });
+
+      if (parseFloat(b.el.style.left) < 0 || parseFloat(b.el.style.left) > window.innerWidth ||
+          parseFloat(b.el.style.top) < 0 || parseFloat(b.el.style.top) > window.innerHeight) {
+        b.el.remove();
+        rocketBullets.splice(idx,1);
+      }
+    });
+
+    requestAnimationFrame(updateAliens);
+  }
+
+  // Alien shooting toward rocket
+  function shootAlienBullet(alienEl) {
+    const bullet = document.createElement('div');
+    bullet.className = 'bullet';
+    document.body.appendChild(bullet);
+
+    const aRect = alienEl.getBoundingClientRect();
+    const startX = aRect.left + aRect.width/2;
+    const startY = aRect.top + aRect.height/2;
+    bullet.style.left = startX + 'px';
+    bullet.style.top = startY + 'px';
+
+    const rRect = rocket.getBoundingClientRect();
+    const dx = (rRect.left + rRect.width/2) - startX;
+    const dy = (rRect.top + rRect.height/2) - startY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const speed = 4;
+
+    alienBullets.push({ el: bullet, vx: dx/dist*speed, vy: dy/dist*speed });
+
+    // Fade bullet after 3s
+    setTimeout(() => bullet.classList.add('fade'), 0);
+    setTimeout(() => bullet.remove(), 3000);
+  }
+
+  // Rocket shooting toward mouse click
+  document.addEventListener('click', (e) => {
+    if (!invasionStarted || !rocketAlive) return;
+
+    const rRect = rocket.getBoundingClientRect();
+    const startX = rRect.left + rRect.width/2;
+    const startY = rRect.top + rRect.height/2;
+
+    const bullet = document.createElement('div');
+    bullet.className = 'bullet';
+    bullet.style.left = startX + 'px';
+    bullet.style.top = startY + 'px';
+    document.body.appendChild(bullet);
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const speed = 6;
+
+    rocketBullets.push({ el: bullet, dx: dx/dist*speed, dy: dy/dist*speed });
+
+    // Fade bullet after 3s
+    setTimeout(() => bullet.classList.add('fade'), 0);
+    setTimeout(() => bullet.remove(), 3000);
+  });
   </script>
+
+  
+
+
 </body>
 </html>
+
+
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DeshadSpace | Projects</title>
+  <title>Sentinode X | DeshadSpace</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
@@ -40,54 +40,29 @@
 
     /* Container */
     .container {
-      max-width:1100px;
+      max-width:900px;
       margin:72px auto;
       padding:28px;
-      text-align:center;
+      text-align:left;
     }
 
     h1 {
       font-size:2.4rem;
       color:#00bcd4;
-      margin-bottom:40px;
+      margin-bottom:20px;
       text-shadow:0 0 12px rgba(0,188,212,0.55);
     }
 
-    /* Cards layout */
-    .cards {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:28px;
+    h2 {
+      color:#ff9800;
+      margin:25px 0 10px;
     }
-    .card {
-      background:#1a1a1a;
-      border-radius:15px;
-      padding:20px;
-      width:260px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.5);
-      transition:transform .3s ease, box-shadow .3s ease;
-      position:relative;
-      overflow:hidden;
-      text-align:left;
+
+    p {
+      color:#ddd;
+      line-height:1.6;
+      margin-bottom:16px;
     }
-    .card:hover {
-      transform:translateY(-8px);
-      box-shadow:0 0 20px rgba(0,188,212,0.6), 0 0 40px rgba(0,188,212,0.3);
-    }
-    .card h3 { color:#ff9800; margin-bottom:10px; }
-    .card p { color:#ddd; font-size:0.95rem; margin-bottom:18px; }
-    .card a.btn {
-      display:inline-block;
-      padding:8px 16px;
-      background:#00bcd4;
-      color:#000;
-      border-radius:8px;
-      font-weight:700;
-      text-decoration:none;
-      transition:background .25s ease;
-    }
-    .card a.btn:hover { background:#ff9800; }
 
     /* Footer */
     footer {
@@ -125,14 +100,13 @@
 
     /* Responsive */
     @media(max-width:700px) {
-      h1 { font-size:1.8rem; }
-      .card { width:100%; max-width:320px; }
+      h1 { font-size:1.9rem; }
     }
   </style>
 </head>
 <body>
   <!-- Rocket Cursor -->
-  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="rocket cursor">
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="rocket cursor">
 
   <!-- Navigation -->
   <nav>
@@ -147,15 +121,21 @@
 
   <!-- Main -->
   <main class="container">
-    <h1>Projects</h1>
-    <div class="cards">
-      <!-- Sentinode X -->
-      <div class="card">
-        <h3>SENTINODE X</h3>
-        <p>Satellite Telemetry Simulator.</p>
-        <a href="projects/sentinodex.html" class="btn">Read More</a>
-      </div>
-    </div>
+    <h1>Sentinode X</h1>
+    <h2>Satellite Telemetry Simulator</h2>
+    <p><strong>Status:</strong> Work in Progress</p>
+    <p>
+      Sentinode X is an experimental <strong>satellite telemetry simulator</strong> project aimed at 
+      modeling, simulating, and visualizing real-time satellite telemetry data flows.  
+    </p>
+    <p>
+      The project will eventually include simulated satellite bus data, telemetry downlinks, 
+      and ground station processing pipelines. It is designed as a foundation for testing 
+      satellite-ground communication, data monitoring, and AI-driven anomaly detection.
+    </p>
+    <p>
+      🚀 For now, the project is in early development. Further details and implementations will be added soon.  
+    </p>
   </main>
 
   <footer>
@@ -185,4 +165,3 @@
   </script>
 </body>
 </html>
-

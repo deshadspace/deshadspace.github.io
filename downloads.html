@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DeshadSpace | Downloads</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+    body {
+      background:#0f0f0f;
+      color:#fff;
+      cursor:none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Navigation */
+    nav {
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      background:#111;
+      padding:14px 10px;
+      position:sticky;
+      top:0;
+      z-index:999;
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    nav a {
+      color:#00bcd4;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:0.2px;
+      transition:color .18s ease;
+    }
+    nav a:hover { color:#ff9800; }
+
+    /* Container */
+    .container {
+      max-width:900px;
+      margin:72px auto;
+      padding:28px;
+      text-align:center;
+    }
+
+    h1 {
+      font-size:2.4rem;
+      color:#00bcd4;
+      margin-bottom:20px;
+      text-shadow:0 0 12px rgba(0,188,212,0.55);
+    }
+
+    p {
+      color:#ddd;
+      font-size:1.1rem;
+      line-height:1.6;
+      margin-top:20px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top:60px;
+      padding:18px;
+      color:#777;
+      font-size:0.88rem;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Rocket cursor */
+    .rocket-cursor {
+      position:fixed;
+      width:22px;
+      height:22px;
+      pointer-events:none;
+      z-index:10000;
+      transform:translate(-50%,-50%);
+    }
+
+    /* Trail */
+    .trail {
+      position:fixed;
+      width:7px;
+      height:7px;
+      background:#ff9800;
+      border-radius:50%;
+      pointer-events:none;
+      opacity:0.8;
+      z-index:9999;
+      animation:fade 0.6s linear forwards;
+    }
+    @keyframes fade { to { opacity:0; transform:translateY(18px);} }
+
+    /* Responsive */
+    @media(max-width:700px) {
+      h1 { font-size:1.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Rocket Cursor -->
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="rocket cursor">
+
+  <!-- Navigation -->
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../projects.html">Projects</a>
+    <a href="../research.html">Research</a>
+    <a href="../articles.html">Articles</a>
+    <a href="../downloads.html">Downloads</a>
+    <a href="../contact.html">Contact</a>
+  </nav>
+
+  <!-- Main -->
+  <main class="container">
+    <h1>Downloads</h1>
+    <p>Coming Soon!</p>
+  </main>
+
+  <footer>
+    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+  </footer>
+
+  <!-- Rocket cursor script -->
+  <script>
+    const rocket=document.getElementById('rocket');
+    let lastX=window.innerWidth/2, lastY=window.innerHeight/2;
+
+    document.addEventListener('mousemove',(e)=>{
+      const x=e.clientX, y=e.clientY;
+      rocket.style.left=x+'px';
+      rocket.style.top=y+'px';
+      const dx=x-lastX, dy=y-lastY;
+      const angle=Math.atan2(dy,dx)*(180/Math.PI);
+      rocket.style.transform=`translate(-50%,-50%) rotate(${angle+45}deg)`;
+      lastX=x; lastY=y;
+      const trail=document.createElement('div');
+      trail.className='trail';
+      trail.style.left=(x-4)+'px';
+      trail.style.top=(y-4)+'px';
+      document.body.appendChild(trail);
+      setTimeout(()=>trail.remove(),600);
+    });
+  </script>
+</body>
+</html>

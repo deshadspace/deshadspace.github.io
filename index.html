@@ -96,6 +96,53 @@
       justify-content: center; /* center cards horizontally */
       gap: 20px; /* spacing between cards */
     }
+    
+    /* --- NEW SKILLS SECTION STYLES --- */
+    .skills-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px; /* Space between the two columns */
+        padding: 0 5%;
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-wrap: wrap; /* Allows columns to stack on small screens */
+    }
+    .skills-category {
+        flex: 1; /* Makes columns take equal space */
+        min-width: 300px; /* Ensures columns don't get too narrow */
+    }
+    .skills-category h3 {
+        color: #ff9800;
+        border-bottom: 2px solid #00bcd4; /* Separator for category title */
+        padding-bottom: 5px;
+        margin-bottom: 25px;
+        font-size: 1.5em;
+    }
+    .skill-item {
+        margin-bottom: 15px;
+    }
+    .skill-item span {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 700;
+        color: #ccc;
+    }
+    .skill-bar-container {
+        width: 100%;
+        background-color: #333;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .skill-bar {
+        height: 20px; /* Slightly taller for better visibility */
+        background-color: #00bcd4;
+        text-align: right;
+        padding-right: 5px;
+        color: white;
+        font-size: 0.8em;
+        line-height: 20px; /* Center text vertically */
+        transition: width 1s ease-in-out;
+    }
 
     .card {
       background: #1a1a1a;
@@ -201,13 +248,115 @@
     </div>
   </section>
 
+  <section id="about-me" class="container" 
+  style="padding: 60px 5%; max-width: 1000px; margin: 0 auto; 
+  display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
   
+  <div style="flex: 1;">
+    <h2 style="margin-top: 0; color: #00bcd4;">Meet the Explorer</h2>
+    <p>
+      I'm <strong>Deshad</strong>, a Manufacturing & Industrial Engineering graduate transitioning my passion 
+      and expertise towards the exciting frontier of <strong>Satellite Technology</strong> 
+      and <strong>Aerospace Data Science</strong>. Graduating from the University of Peradeniya 
+      provided me with a robust foundation in engineering principles, which I now combine 
+      with advanced skills in <strong>Machine Learning</strong>, <strong>Predictive Analytics</strong>, 
+      and <strong>Full-Stack Development</strong>.
+    </p>
+    <p>
+      My goal is to leverage computational intelligence—from building neural networks for anomaly detection 
+      to programming reliable flight control systems to contribute to next-generation space missions 
+      and ground segment operations. Let's connect and build the future, in code and orbit!
+    </p>
+  </div>
 
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
-  </footer>
+  <div style="flex-shrink: 0; text-align: center;">
+    <img src="images/me.png" alt="Deshad's Profile Photo" 
+      style="width: 400px; height: 400px; object-fit: cover; border-radius: 75%; 
+      border: 5px solid #ff9800; box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);">
+  </div>
+</section>
+
+<section id="technical-expertise" class="container" style="padding: 40px 0 80px 0;">
+    <h2 class="section-title">Technical Expertise</h2>
+    
+    <div class="skills-grid">
+        
+        <div class="skills-category">
+            <h3>Programming & Development 💻</h3>
+
+            <div class="skill-item">
+              <span>Python (ML, Data Analysis, Simulation)</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 95%;">95%</div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <span>C / C++ (Flight/Embedded Systems)</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 25%;">25%</div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <span>Full-Stack: Node.js, JavaScript, HTML/CSS</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 70%;">70%</div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <span>SQL & Database Management</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 80%;">80%</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h3>Core Engineering & Data Science 🛰️</h3>
+            
+            <div class="skill-item">
+              <span>Deep Learning (NN, Keras/PyTorch)</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 90%;">90%</div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <span>Predictive Analytics (Tree Models, Ensembles)</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 95%;">95%</div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <span>Control Systems Engineering (ADCS)</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 60%;">60%</div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <span>Orbital Mechanics & Astrodynamics</span>
+              <div class="skill-bar-container">
+                <div class="skill-bar" style="width: 50%;">50%</div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 20px 0; background: #111; color: white; margin-top: 40px;">
+  <p>© 2025 DeshadSpace | 
+    <a href="https://github.com/deshadspace" style="color:#00bcd4; text-decoration: none;">GitHub</a>
+  </p>
+</footer>
+
 
   <style>
   .bullet { 

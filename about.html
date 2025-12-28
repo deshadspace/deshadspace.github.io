@@ -75,6 +75,8 @@
     .milestone a:hover { color: var(--orange); }
     .milestone img {
       max-width: 120px;
+      height: 60px;           /* ADD: Fixed height for consistency */
+      object-fit: contain;    /* ADD: Maintain aspect ratio within bounds */
       margin-top: 10px;
       border-radius: 10px;
       display: block;

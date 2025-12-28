@@ -3,148 +3,73 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DeshadSpace | Articles</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+  <title>Articles by Deshad Senevirathne | Sustainable Agriculture</title>
+  <meta name="description" content="Articles and publications by Deshad Senevirathne on sustainable agriculture, green technology, and environmental engineering">
+  <meta name="keywords" content="Deshad Senevirathne articles, sustainable agriculture, green technology, Jayabima Plantations">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-    body {
-      background:#0f0f0f;
-      color:#fff;
-      cursor:none;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* Navigation */
-    nav {
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      background:#111;
-      padding:14px 10px;
-      position:sticky;
-      top:0;
-      z-index:999;
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    nav a {
-      color:#00bcd4;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:0.2px;
-      transition:color .18s ease;
-    }
-    nav a:hover { color:#ff9800; }
-
-    /* Container */
-    .container {
-      max-width:900px;
-      margin:72px auto;
-      padding:28px;
-      text-align:center;
-    }
-
-    h1 {
-      font-size:2.4rem;
-      color:#00bcd4;
-      margin-bottom:20px;
-      text-shadow:0 0 12px rgba(0,188,212,0.55);
-    }
-
-    p {
-      color:#ddd;
-      font-size:1.1rem;
-      line-height:1.6;
-      margin-top:20px;
-    }
-
-    /* Footer */
-    footer {
-      margin-top:60px;
-      padding:18px;
-      color:#777;
-      font-size:0.88rem;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,0.02);
-    }
-
-    /* Rocket cursor */
-    .rocket-cursor {
-      position:fixed;
-      width:22px;
-      height:22px;
-      pointer-events:none;
-      z-index:10000;
-      transform:translate(-50%,-50%);
-    }
-
-    /* Trail */
-    .trail {
-      position:fixed;
-      width:7px;
-      height:7px;
-      background:#ff9800;
-      border-radius:50%;
-      pointer-events:none;
-      opacity:0.8;
-      z-index:9999;
-      animation:fade 0.6s linear forwards;
-    }
-    @keyframes fade { to { opacity:0; transform:translateY(18px);} }
-
-    /* Responsive */
-    @media(max-width:700px) {
-      h1 { font-size:1.9rem; }
+    .article-viewer {
+      width: 100%;
+      height: 850px;
+      border: 2px solid var(--cyan);
+      margin-top: 25px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- Rocket Cursor -->
-  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="rocket cursor">
+  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="">
 
-  <!-- Navigation -->
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../about.html">About</a>
-    <a href="../projects.html">Projects</a>
-    <a href="../research.html">Research</a>
-    <a href="../articles.html">Articles</a>
-    <a href="../downloads.html">Downloads</a>
-    <a href="../contact.html">Contact</a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="research.html" class="nav-link">Research</a></li>
+        <li><a href="articles.html" class="nav-link active">Articles</a></li>
+        <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Main -->
-  <main class="container">
-    <h1>Articles</h1>
-    <p>Coming Soon!</p>
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text text-center fade-in">Latest Article: GROWING GREEN WITH JAYABIMA PLANTATIONS</h1>
+    <h2 class="text-center" style="color: var(--orange); margin-bottom: 2rem;">Path to Sustainable Living</h2>
+    
+    <p class="fade-in" style="text-align: center;">Below is the embedded excerpt from the white paper. The viewer is set to begin at Page 37 to start the article section.</p>
+    
+    <iframe 
+        src="https://drive.google.com/file/d/1yyV6SlGQE8KKyweLz2v0AOIvBckcxLW3/preview#page=37" 
+        class="article-viewer fade-in" 
+        frameborder="0" 
+        allowfullscreen 
+        title="GROWING GREEN WITH JAYABIMA PLANTATIONS: PATH TO SUSTAINABLE LIVING">
+    </iframe>
   </main>
 
   <footer>
-    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a> · 
+        <a href="https://linkedin.com/in/deshad-senevirathne" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- Rocket cursor script -->
-  <script>
-    const rocket=document.getElementById('rocket');
-    let lastX=window.innerWidth/2, lastY=window.innerHeight/2;
-
-    document.addEventListener('mousemove',(e)=>{
-      const x=e.clientX, y=e.clientY;
-      rocket.style.left=x+'px';
-      rocket.style.top=y+'px';
-      const dx=x-lastX, dy=y-lastY;
-      const angle=Math.atan2(dy,dx)*(180/Math.PI);
-      rocket.style.transform=`translate(-50%,-50%) rotate(${angle+45}deg)`;
-      lastX=x; lastY=y;
-      const trail=document.createElement('div');
-      trail.className='trail';
-      trail.style.left=(x-4)+'px';
-      trail.style.top=(y-4)+'px';
-      document.body.appendChild(trail);
-      setTimeout(()=>trail.remove(),600);
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

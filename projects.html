@@ -3,186 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DeshadSpace | Projects</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
-    body {
-      background:#0f0f0f;
-      color:#fff;
-      cursor:none;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* Navigation */
-    nav {
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      background:#111;
-      padding:14px 10px;
-      position:sticky;
-      top:0;
-      z-index:999;
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    nav a {
-      color:#00bcd4;
-      text-decoration:none;
-      font-weight:700;
-      letter-spacing:0.2px;
-      transition:color .18s ease;
-    }
-    nav a:hover { color:#ff9800; }
-
-    /* Container */
-    .container {
-      max-width:1100px;
-      margin:72px auto;
-      padding:28px;
-      text-align:center;
-    }
-
-    h1 {
-      font-size:2.4rem;
-      color:#00bcd4;
-      margin-bottom:40px;
-      text-shadow:0 0 12px rgba(0,188,212,0.55);
-    }
-
-    /* Cards layout */
-    .cards {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:28px;
-    }
-    .card {
-      background:#1a1a1a;
-      border-radius:15px;
-      padding:20px;
-      width:260px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.5);
-      transition:transform .3s ease, box-shadow .3s ease;
-      position:relative;
-      overflow:hidden;
-      text-align:left;
-    }
-    .card:hover {
-      transform:translateY(-8px);
-      box-shadow:0 0 20px rgba(0,188,212,0.6), 0 0 40px rgba(0,188,212,0.3);
-    }
-    .card h3 { color:#ff9800; margin-bottom:10px; }
-    .card p { color:#ddd; font-size:0.95rem; margin-bottom:18px; }
-    .card a.btn {
-      display:inline-block;
-      padding:8px 16px;
-      background:#00bcd4;
-      color:#000;
-      border-radius:8px;
-      font-weight:700;
-      text-decoration:none;
-      transition:background .25s ease;
-    }
-    .card a.btn:hover { background:#ff9800; }
-
-    /* Footer */
-    footer {
-      margin-top:60px;
-      padding:18px;
-      color:#777;
-      font-size:0.88rem;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,0.02);
-    }
-
-    /* Rocket cursor */
-    .rocket-cursor {
-      position:fixed;
-      width:22px;
-      height:22px;
-      pointer-events:none;
-      z-index:10000;
-      transform:translate(-50%,-50%);
-    }
-
-    /* Trail */
-    .trail {
-      position:fixed;
-      width:7px;
-      height:7px;
-      background:#ff9800;
-      border-radius:50%;
-      pointer-events:none;
-      opacity:0.8;
-      z-index:9999;
-      animation:fade 0.6s linear forwards;
-    }
-    @keyframes fade { to { opacity:0; transform:translateY(18px);} }
-
-    /* Responsive */
-    @media(max-width:700px) {
-      h1 { font-size:1.8rem; }
-      .card { width:100%; max-width:320px; }
-    }
-  </style>
+  <title>Projects by Deshad Senevirathne | Sentinode X Satellite Simulator</title>
+  <meta name="description" content="Engineering projects by Deshad Senevirathne - Sentinode X satellite telemetry simulator, space technology, and AI-driven systems">
+  <meta name="keywords" content="Deshad Senevirathne projects, Sentinode X, satellite simulator, space technology projects">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Rocket Cursor -->
-  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="rocket cursor">
+  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="">
 
-  <!-- Navigation -->
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../about.html">About</a>
-    <a href="../projects.html">Projects</a>
-    <a href="../research.html">Research</a>
-    <a href="../articles.html">Articles</a>
-    <a href="../downloads.html">Downloads</a>
-    <a href="../contact.html">Contact</a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="research.html" class="nav-link">Research</a></li>
+        <li><a href="articles.html" class="nav-link">Articles</a></li>
+        <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Main -->
-  <main class="container">
-    <h1>Projects</h1>
-    <div class="cards">
-      <!-- Sentinode X -->
-      <div class="card">
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="section-title gradient-text">Projects</h1>
+    
+    <div class="cards-grid">
+      <div class="project-card fade-in" data-tilt>
+        <div class="card-icon">🛰️</div>
+        <span class="card-badge badge-active">Active Development</span>
         <h3>SENTINODE X</h3>
-        <p>Satellite Telemetry Simulator.</p>
-        <a href="projects/sentinodex.html" class="btn">Read More</a>
+        <p>Satellite Telemetry Simulator with real-time anomaly detection.</p>
+        <a href="projects/sentinodex.html" class="btn btn-glass" style="margin-top: 1rem;">Read More →</a>
       </div>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a> · 
+        <a href="https://linkedin.com/in/deshad-senevirathne" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- Rocket cursor script -->
-  <script>
-    const rocket=document.getElementById('rocket');
-    let lastX=window.innerWidth/2, lastY=window.innerHeight/2;
-
-    document.addEventListener('mousemove',(e)=>{
-      const x=e.clientX, y=e.clientY;
-      rocket.style.left=x+'px';
-      rocket.style.top=y+'px';
-      const dx=x-lastX, dy=y-lastY;
-      const angle=Math.atan2(dy,dx)*(180/Math.PI);
-      rocket.style.transform=`translate(-50%,-50%) rotate(${angle+45}deg)`;
-      lastX=x; lastY=y;
-      const trail=document.createElement('div');
-      trail.className='trail';
-      trail.style.left=(x-4)+'px';
-      trail.style.top=(y-4)+'px';
-      document.body.appendChild(trail);
-      setTimeout(()=>trail.remove(),600);
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-

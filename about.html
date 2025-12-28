@@ -3,36 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeshadSpace | About</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- SEO -->
+  <title>About Deshad Senevirathne | University of Peradeniya Graduate</title>
+  <meta name="description" content="Career timeline and education of Deshad Senevirathne - BSc Engineering graduate from University of Peradeniya, Freelance AI Engineer specializing in Satellite Technology">
+  <meta name="keywords" content="Deshad Senevirathne, Deshad, University of Peradeniya, Manufacturing Engineering, AI Engineer, career timeline">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  
   <style>
-    /* Base Theme */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-    body { background: #0f0f0f; color: #fff; overflow-x: hidden; }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #1a1a1a;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    nav a {
-      color: #00bcd4;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 700;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: #ff9800; }
-
-    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-
-    h1 { font-size: 2.5em; color: #00bcd4; text-align: center; margin-bottom: 40px; }
-
-    /* Timeline */
+    /* Timeline-specific styles */
     .timeline {
       position: relative;
       margin: 20px 0;
@@ -45,11 +32,9 @@
       left: 20px;
       width: 4px;
       height: 100%;
-      background: #00bcd4;
+      background: var(--cyan);
       opacity: 0.5;
-      transition: all 0.3s ease;
     }
-
     .milestone {
       position: relative;
       margin-bottom: 50px;
@@ -57,8 +42,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
-    /* Glowing node points */
     .milestone::before {
       content: '';
       position: absolute;
@@ -66,16 +49,15 @@
       top: 5px;
       width: 18px;
       height: 18px;
-      background: #ff9800;
+      background: var(--orange);
       border-radius: 50%;
-      border: 2px solid #0f0f0f;
+      border: 2px solid var(--bg-dark);
       box-shadow: 0 0 8px rgba(255,152,0,0.6);
       transition: all 0.3s ease;
     }
-
     .milestone h2 {
       font-size: 1.5em;
-      color: #ff9800;
+      color: var(--orange);
       margin-bottom: 10px;
       transition: color 0.3s ease;
     }
@@ -85,12 +67,12 @@
       margin-bottom: 10px;
     }
     .milestone a {
-      color: #00bcd4;
+      color: var(--cyan);
       font-weight: 700;
       text-decoration: none;
       transition: color 0.3s ease;
     }
-    .milestone a:hover { color: #ff9800; }
+    .milestone a:hover { color: var(--orange); }
     .milestone img {
       max-width: 120px;
       margin-top: 10px;
@@ -98,23 +80,16 @@
       display: block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    /* Hover effects */
     .milestone:hover::before {
-      background: #00bcd4;
-      box-shadow: 0 0 15px #00bcd4, 0 0 30px #00bcd4;
+      background: var(--cyan);
+      box-shadow: 0 0 15px var(--cyan), 0 0 30px var(--cyan);
     }
-    .milestone:hover h2 { color: #00bcd4; }
+    .milestone:hover h2 { color: var(--cyan); }
     .milestone:hover img {
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(0,188,212,0.6);
     }
-
-    footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      h1 { font-size: 2em; }
       .milestone h2 { font-size: 1.3em; }
       .milestone p { font-size: 1em; }
       .milestone img { max-width: 90px; }
@@ -122,104 +97,117 @@
   </style>
 </head>
 <body>
+  <!-- Rocket Cursor -->
+  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="">
 
   <!-- Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="research.html">Research</a>
-    <a href="articles.html">Articles</a>
-    <a href="downloads.html">Downloads</a>
-    <a href="contact.html">Contact</a>
-
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link active">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="research.html" class="nav-link">Research</a></li>
+        <li><a href="articles.html" class="nav-link">Articles</a></li>
+        <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <main>
-    <h1>About Me</h1>
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text text-center">About Me</h1>
     <p style="text-align:center; font-size:1.2em; color:#ccc; margin-bottom:30px;">
-    I am an engineer and an independent researcher passionate about the space industry.  
-    I’m developing my expertise in the areas of <span style="color:#00bcd4; font-weight:700;">Machine Learning</span> & 
-    <span style="color:#00bcd4; font-weight:700;">AI</span> for satellite data optimization.
+      I am an engineer and an independent researcher passionate about the space industry.  
+      I'm developing my expertise in the areas of <span style="color:#00bcd4; font-weight:700;">Machine Learning</span> & 
+      <span style="color:#00bcd4; font-weight:700;">AI</span> for satellite data optimization.
     </p>
 
-    
     <div class="timeline">
-
       <!-- Career -->
-
-      <div class="milestone">
+      <div class="milestone fade-in">
         <h2>May 2025 – Present | Freelance AI Engineer</h2>
-        <p>Currently working as a freelance AI Engineer on <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">Upwork</a>.</p>
-        <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">
+        <p>Currently working as a freelance AI Engineer on <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17" target="_blank">Upwork</a>.</p>
+        <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17" target="_blank">
           <img src="images/freelance.png" alt="Upwork">
         </a>
       </div>
 
-      <div class="milestone">
+      <div class="milestone fade-in">
         <h2>Aug 2024 – May 2025 | Mechanical Site Engineer</h2>
-        <p>Worked at <a href="https://www.dgsl.lk/">Dockyard General Engineering Services (Pvt) Ltd</a>.</p>
-        <a href="https://www.dges.lk/">
+        <p>Worked at <a href="https://www.dgsl.lk/" target="_blank">Dockyard General Engineering Services (Pvt) Ltd</a>.</p>
+        <a href="https://www.dges.lk/" target="_blank">
           <img src="images/dges.png" alt="Dockyard General Engineering Services">
         </a>
       </div>
 
-      
-      <div class="milestone">
+      <div class="milestone fade-in">
         <h2>2023 – 2024 | Freelance Manufacturing Engineer</h2>
-        <p>Worked as a freelance manufacturing engineer providing solutions across projects on <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">Upwork.</p>
-        <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17">
+        <p>Worked as a freelance manufacturing engineer providing solutions across projects on <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17" target="_blank">Upwork</a>.</p>
+        <a href="https://www.upwork.com/freelancers/~01ba999508e7722b17" target="_blank">
           <img src="images/freelance.png" alt="Upwork">
         </a>
       </div>
 
       <!-- Industrial Training -->
-
-       <div class="milestone">
+      <div class="milestone fade-in">
         <h2>2022 – Industrial Training</h2>
-        <p>3 months Industrial Training at <a href="https://www.martin-bauer-hayleys.com">Martin Bauer Hayleys Pvt. Ltd.</a>.</p>
-        <a href="https://www.martin-bauer-hayleys.com">
+        <p>3 months Industrial Training at <a href="https://www.martin-bauer-hayleys.com" target="_blank">Martin Bauer Hayleys Pvt. Ltd.</a></p>
+        <a href="https://www.martin-bauer-hayleys.com" target="_blank">
           <img src="images/martin-bauer.png" alt="Martin Bauer Hayleys">
         </a>
       </div>
 
-      <div class="milestone">
+      <div class="milestone fade-in">
         <h2>2020 – Industrial Training</h2>
-        <p>3 months Industrial Training at <a href="https://udayaindustries.lk">Udaya Industries</a>.</p>
-        <a href="https://udayaindustries.lk">
+        <p>3 months Industrial Training at <a href="https://udayaindustries.lk" target="_blank">Udaya Industries</a>.</p>
+        <a href="https://udayaindustries.lk" target="_blank">
           <img src="images/udaya-industries.png" alt="Udaya Industries">
         </a>
       </div>
 
-       <!-- University -->
-      <div class="milestone">
+      <!-- University -->
+      <div class="milestone fade-in">
         <h2>2017 – 2023 | University of Peradeniya</h2>
         <p>Graduated with BSc. Engineering (Hons), specialized in 
-          <a href="https://eng.pdn.ac.lk/mie/">Manufacturing & Industrial Engineering</a>.
+          <a href="https://eng.pdn.ac.lk/mie/" target="_blank">Manufacturing & Industrial Engineering</a>.
         </p>
-        <a href="https://eng.pdn.ac.lk/">
+        <a href="https://eng.pdn.ac.lk/" target="_blank">
           <img src="images/peradeniya.png" alt="University of Peradeniya">
         </a>
       </div>
 
-       <!-- School -->
-      <div class="milestone">
+      <!-- School -->
+      <div class="milestone fade-in">
         <h2>2016 – Advanced Levels</h2>
         <p>Completed A/Ls in Physics stream at 
-          <a href="https://dsscoba.org/about-us/d-s-senanayake-college/">D.S. Senanayake College, Colombo 07</a>.
+          <a href="https://dsscoba.org/about-us/d-s-senanayake-college/" target="_blank">D.S. Senanayake College, Colombo 07</a>.
         </p>
-        <a href="https://dsscoba.org/about-us/d-s-senanayake-college/">
+        <a href="https://dsscoba.org/about-us/d-s-senanayake-college/" target="_blank">
           <img src="images/ds-college.png" alt="D.S. Senanayake College">
         </a>
       </div>
-
-     
     </div>
   </main>
 
   <footer>
-    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne | Built with passion for space exploration</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a> · 
+        <a href="https://linkedin.com/in/deshad-senevirathne" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

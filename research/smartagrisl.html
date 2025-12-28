@@ -3,194 +3,374 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeshadSpace | Smart Agriculture</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Smart Agriculture Research | DeshadSpace</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  
   <style>
-    /* Reset & fonts */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-    body { background: #0f0f0f; color: #fff; cursor: none; overflow-x: hidden; }
-
-    /* Navigation */
-    nav {
+    /* Publication Banner Styles */
+    .publication-banner {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(156, 39, 176, 0.15));
+      border: 2px solid var(--cyan);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
       display: flex;
-      justify-content: center;
-      background: #1a1a1a;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    nav a {
-      color: #00bcd4;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 700;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: #ff9800; }
-
-    /* Section */
-    .container {
-      max-width: 1000px;
-      margin: 80px auto;
-      padding: 20px;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    h1 {
-      font-size: 2.5em;
-      color: #00bcd4;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0,188,212,0.7);
+    
+    .publication-banner::before {
+      content: '✓';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      font-size: 200px;
+      color: rgba(0, 229, 255, 0.1);
+      font-weight: bold;
     }
-
-    p {
-      font-size: 1.1em;
-      color: #ccc;
-      line-height: 1.8;
-      margin-bottom: 30px;
-      text-align: justify;
-    }
-
-    strong { color: #ff9800; }
-
-    /* LinkedIn icon */
-    .linkedin {
+    
+    .status-badge-large {
       display: inline-flex;
       align-items: center;
-      margin-top: 20px;
-      font-size: 1.1em;
+      gap: 0.75rem;
+      padding: 0.75rem 2rem;
+      background: rgba(0, 229, 255, 0.2);
+      border: 2px solid var(--cyan);
+      border-radius: 50px;
+      color: var(--cyan-light);
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: 0.5px;
+      box-shadow: var(--glow-cyan);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.5); }
+      50% { box-shadow: 0 0 30px rgba(0, 229, 255, 0.8); }
+    }
+    
+    .btn-view-publication {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--gradient-primary);
+      color: white;
+      font-weight: 700;
+      font-size: 1.125rem;
+      border-radius: 50px;
       text-decoration: none;
-      color: #00bcd4;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-cyan);
+      position: relative;
+      z-index: 10;
     }
-    .linkedin:hover { color: #ff9800; }
-    .linkedin i {
-      margin-right: 8px;
-      font-size: 1.5em;
+    
+    .btn-view-publication:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 188, 212, 0.8);
+      color: white;
     }
-
-    /* Rocket cursor */
-    .rocket-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%);
+    
+    .external-icon {
+      font-size: 1.25rem;
+      transition: transform 0.3s ease;
     }
-
-    .trail {
-      position: fixed;
-      width: 7px;
-      height: 7px;
-      background: #ff9800;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.7;
-      z-index: 9999;
-      animation: fade 0.6s linear forwards;
+    
+    .btn-view-publication:hover .external-icon {
+      transform: translate(3px, -3px);
     }
-
-    @keyframes fade { to { opacity: 0; transform: translateY(20px); } }
-
-    /* Footer */
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      color: #777;
-      font-size: 0.9em;
-      text-align: center;
+    
+    /* Research Details */
+    .research-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .meta-icon {
+      font-size: 1.5rem;
+      color: var(--cyan);
+    }
+    
+    .meta-content h4 {
+      font-size: 0.875rem;
+      color: #888;
+      margin-bottom: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .meta-content p {
+      font-size: 1rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+    
+    .collaborator-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(156, 39, 176, 0.2);
+      border: 1px solid var(--purple);
+      border-radius: 20px;
+      color: var(--purple-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    
+    .collaborator-tag:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-purple);
+      color: var(--purple-light);
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .publication-banner {
+        padding: 1.5rem;
+      }
+      
+      .status-badge-large {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+      }
+      
+      .btn-view-publication {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+      }
+      
+      .research-meta {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
-<body>
 
-  <!-- Rocket Cursor -->
-  <img src="../rocket.png" id="rocket" class="rocket-cursor">
+<body>
+  <!-- Rocket Cursor (Desktop Only) -->
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="">
 
   <!-- Navigation -->
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="../about.html">About</a>
-    <a href="../projects.html">Projects</a>
-    <a href="../research.html">Research</a>
-    <a href="../articles.html">Articles</a>
-    <a href="../downloads.html">Downloads</a>
-    <a href="../contact.html">Contact</a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      
+      <button class="nav-toggle" id="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../projects.html" class="nav-link">Projects</a></li>
+        <li><a href="../research.html" class="nav-link active">Research</a></li>
+        <li><a href="../articles.html" class="nav-link">Articles</a></li>
+        <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Research Section -->
-  <div class="container">
-    <h1>Smart Agriculture – Paddy Yield Prediction for Sri Lanka</h1>
-    <p>
-      Paddy (<i>Oryza sativa</i>) is a widely consumed staple food worldwide, feeding over 50% of the global population.  
-      Sri Lanka has been cultivating paddy for centuries, and with the rapid increase in population, <strong>forecasting paddy yield becomes essential</strong>.  
-    </p>
-    <p>
-      This research aims to predict Sri Lankan district-wise paddy yield using openly available data: 
-      <strong>CHIRPS 2.0, NASA POWER APIs, Sri Lankan Rice Research and Development Institute’s PH and Salinity Maps, and Paddy Statistics 
-      from the Department of Census and Statistics – Sri Lanka</strong> for local agro zones.  
-    </p>
-    <p>
-      For the three major agro-climatic zones and 25 administrative districts, data from 2004 to 2024 were collected 
-      for the two harvesting seasons “Yala” and “Maha”. The target variable is the total paddy production per district (in metric tons), 
-      ranging from <strong>185 MT (Mannar, 2006 Yala)</strong> to <strong>530,356 MT (Anuradhapura, 2019-2020 Maha)</strong>.
-    </p>
-    <p>
-      Using the crop calendar template from the Department of Agriculture – Sri Lanka, end-to-end crop harvesting simulations were constructed.  
-      By combining these simulations with climate variables, soil properties, and historical yield records, we created 12 heterogeneous datasets.  
-      These were used to train 12 base models, whose out-of-fold predictions fed into two meta models, and finally a stacked meta model.  
-    </p>
-    <p>
-      The final model achieved <strong>RMSE = 3,535 MT</strong>, <strong>R² = 0.9986</strong>, and <strong>NRMSE = 0.76%</strong>, 
-      demonstrating high accuracy in predicting district-level seasonal paddy yield.  
-      This highlights the potential of <strong>open data + machine learning</strong> for sustainable agriculture in Sri Lanka.  
-    </p>
-    <p class="note">
-    <em>This abstract was submitted to IECAG 2025 and Approved.</em>
-    </p>
+  <!-- Main Content -->
+  <section class="section" style="padding-top: 120px;">
+    <div class="container">
+      
+      <!-- Title -->
+      <h1 class="gradient-text text-center fade-in">
+        Smart Agriculture – Paddy Yield Prediction for Sri Lanka
+      </h1>
+      
+      <h2 class="text-center fade-in" style="color: var(--orange); margin-bottom: 2rem;">
+        Using Stacked Ensemble Learning
+      </h2>
 
-    <!-- Tag collaborator -->
-    <a class="linkedin" href="https://www.linkedin.com/in/achinthi-premasiri-3a47141b9/" target="_blank">
-      <i class="fab fa-linkedin"></i> Research with Ms. Achinthi Premasiri (BSc, University of Jaffna; MPhil – University of Ruhuna)
-    </a>
-  </div>
+      <!-- Publication Banner -->
+      <div class="publication-banner fade-in">
+        <div class="status-badge-large">
+          <i class="fas fa-check-circle"></i>
+          PEER-REVIEWED & PUBLISHED
+        </div>
+        
+        <a href="https://sciforum.net/paper/view/28336" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="btn-view-publication">
+          <i class="fas fa-file-alt"></i>
+          View Full Publication on SciForum
+          <span class="external-icon">↗</span>
+        </a>
+        
+        <p style="color: #aaa; font-size: 0.95rem; margin-top: 0.5rem; margin-bottom: 0;">
+          Published in the 5th International Electronic Conference on Agronomy (IECAG 2025)
+        </p>
+      </div>
+
+      <!-- Research Metadata -->
+      <div class="research-meta fade-in">
+        <div class="meta-item">
+          <div class="meta-icon"><i class="fas fa-calendar-alt"></i></div>
+          <div class="meta-content">
+            <h4>Published</h4>
+            <p>2025</p>
+          </div>
+        </div>
+        
+        <div class="meta-item">
+          <div class="meta-icon"><i class="fas fa-flask"></i></div>
+          <div class="meta-content">
+            <h4>Domain</h4>
+            <p>Agricultural Data Science</p>
+          </div>
+        </div>
+        
+        <div class="meta-item">
+          <div class="meta-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="meta-content">
+            <h4>Accuracy</h4>
+            <p>R² = 0.9986, NRMSE = 0.76%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Abstract -->
+      <div class="glass-card fade-in" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--cyan); margin-bottom: 1rem;">Abstract</h3>
+        
+        <p>
+          Paddy (<i>Oryza sativa</i>) is a widely consumed staple food worldwide, feeding over 50% of the global population.  
+          Sri Lanka has been cultivating paddy for centuries, and with the rapid increase in population, 
+          <strong>forecasting paddy yield becomes essential</strong> for food security and agricultural planning.
+        </p>
+        
+        <p>
+          This research aims to predict Sri Lankan district-wise paddy yield using openly available data: 
+          <strong>CHIRPS 2.0, NASA POWER APIs, Sri Lankan Rice Research and Development Institute's PH and Salinity Maps, 
+          and Paddy Statistics from the Department of Census and Statistics – Sri Lanka</strong> for local agro zones.
+        </p>
+      </div>
+
+      <!-- Methodology -->
+      <div class="glass-card fade-in" style="margin-bottom: 2rem;">
+        <h3 style="color: var(--orange); margin-bottom: 1rem;">Methodology</h3>
+        
+        <p>
+          For the three major agro-climatic zones and 25 administrative districts, data from 2004 to 2024 were collected 
+          for the two harvesting seasons "Yala" and "Maha". The target variable is the total paddy production per district (in metric tons), 
+          ranging from <strong>185 MT (Mannar, 2006 Yala)</strong> to <strong>530,356 MT (Anuradhapura, 2019-2020 Maha)</strong>.
+        </p>
+        
+        <p>
+          Using the crop calendar template from the Department of Agriculture – Sri Lanka, end-to-end crop harvesting simulations were constructed.  
+          By combining these simulations with climate variables, soil properties, and historical yield records, we created 
+          <strong>12 heterogeneous datasets</strong>.
+        </p>
+        
+        <p>
+          These were used to train <strong>12 base models</strong>, whose out-of-fold predictions fed into 
+          <strong>two meta models</strong>, and finally a <strong>stacked meta model</strong>.
+        </p>
+      </div>
+
+      <!-- Results -->
+      <div class="glass-card fade-in" style="margin-bottom: 2rem; border: 2px solid var(--cyan);">
+        <h3 style="color: var(--cyan-light); margin-bottom: 1rem;">
+          <i class="fas fa-trophy"></i> Key Results
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--cyan-light);">0.9986</div>
+            <div style="color: #aaa; font-size: 0.95rem;">R² Score</div>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--orange);">3,535 MT</div>
+            <div style="color: #aaa; font-size: 0.95rem;">RMSE</div>
+          </div>
+          
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--purple-light);">0.76%</div>
+            <div style="color: #aaa; font-size: 0.95rem;">NRMSE</div>
+          </div>
+        </div>
+        
+        <p style="margin-top: 1.5rem; margin-bottom: 0;">
+          The final model achieved exceptional accuracy in predicting district-level seasonal paddy yield, 
+          demonstrating the potential of <strong>open data + machine learning</strong> for sustainable agriculture in Sri Lanka.
+        </p>
+      </div>
+
+      <!-- Collaboration -->
+      <div class="glass-card fade-in text-center">
+        <p style="font-size: 1.125rem; margin-bottom: 1rem;">
+          <strong>Research Collaboration</strong>
+        </p>
+        
+        <a class="collaborator-tag" 
+           href="https://www.linkedin.com/in/achinthi-premasiri-3a47141b9/" 
+           target="_blank" 
+           rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i>
+          Ms. Achinthi Premasiri
+          <span style="color: #888; font-size: 0.875rem;">(BSc, University of Jaffna; MPhil – University of Ruhuna)</span>
+        </a>
+        
+        <p style="font-size: 0.95rem; color: #aaa; margin-top: 1rem; margin-bottom: 0;">
+          Joint research combining expertise in agricultural science and machine learning
+        </p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 DeshadSpace | <a href="https://github.com/deshadspace" style="color:#00bcd4;">GitHub</a></p>
+    <div class="container">
+      <p>© 2025 DeshadSpace | Advancing sustainable agriculture through data science</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a> · 
+        <a href="https://linkedin.com/in/deshad-senevirathne" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
   </footer>
 
-  <!-- Rocket Cursor Script -->
-  <script>
-    const rocket = document.getElementById('rocket');
-    let lastX = window.innerWidth / 2;
-    let lastY = window.innerHeight / 2;
-
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX, y = e.clientY;
-      rocket.style.left = x + 'px';
-      rocket.style.top = y + 'px';
-
-      const deltaX = x - lastX, deltaY = y - lastY;
-      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-      rocket.style.transform = `translate(-50%, -50%) rotate(${angle + 45}deg)`;
-
-      lastX = x; lastY = y;
-
-      const trail = document.createElement('div');
-      trail.className = 'trail';
-      trail.style.left = (x - 4) + 'px';
-      trail.style.top = (y - 4) + 'px';
-      document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 600);
-    });
-  </script>
-
+  <!-- Scripts -->
+  <script src="../script.js"></script>
 </body>
 </html>

@@ -1,582 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta property="og:title" content="DeshadSpace">
-  <meta property="og:description" content="Exploring Space, Code, and Beyond">
-  <meta property="og:image" content="https://deshaspace.github.io/images/share-image.png">
-  <meta property="og:url" content="https://deshaspace.github.io">
-  <meta property="og:type" content="website">
-
+  <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DeshadSpace</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* Reset & fonts */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
-    body { background: #0f0f0f; color: #fff; cursor: none; overflow-x: hidden; }
-
-    /* Background image */
-    .background {
-      background: url('indexback.jpg') no-repeat center center fixed;
-      background-size: cover;
-      min-height: 100vh;
-      position: relative;
-    }
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4); /* adjust opacity */
-      z-index: 1;
-    }
-    .content {
-      position: relative;
-      z-index: 2; /* keep text above overlay */
-      color: white;
-      text-align: center;
-      padding-top: 20%;
-    }
-
-    /* Navigation */
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #1a1a1a;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    nav a {
-      color: #00bcd4;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: 700;
-      transition: color 0.3s ease;
-    }
-    nav a:hover { color: #ff9800; }
-
-    /* Headings */
-    h1 { font-size: 3em; color: #00bcd4; margin-bottom: 20px; }
-    h2 { font-size: 2em; margin: 20px 0; color: #ff9800; }
-    p { font-size: 1.2em; line-height: 1.6; margin-bottom: 30px; color: #ccc; }
-
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin: 10px;
-      background: #00bcd4;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
-      transition: transform 0.3s ease, background 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn:hover {
-      transform: scale(1.1) rotate(-1deg);
-      background: #ff9800;
-    }
-
-        /* Center the section title */
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-    /* Cards Layout */
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center; /* center cards horizontally */
-      gap: 20px; /* spacing between cards */
-    }
-    
-    /* --- NEW SKILLS SECTION STYLES --- */
-    .skills-grid {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px; /* Space between the two columns */
-        padding: 0 5%;
-        max-width: 1200px;
-        margin: 0 auto;
-        flex-wrap: wrap; /* Allows columns to stack on small screens */
-    }
-    .skills-category {
-        flex: 1; /* Makes columns take equal space */
-        min-width: 300px; /* Ensures columns don't get too narrow */
-    }
-    .skills-category h3 {
-        color: #ff9800;
-        border-bottom: 2px solid #00bcd4; /* Separator for category title */
-        padding-bottom: 5px;
-        margin-bottom: 25px;
-        font-size: 1.5em;
-    }
-    .skill-item {
-        margin-bottom: 15px;
-    }
-    .skill-item span {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 700;
-        color: #ccc;
-    }
-    .skill-bar-container {
-        width: 100%;
-        background-color: #333;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-    .skill-bar {
-        height: 20px; /* Slightly taller for better visibility */
-        background-color: #00bcd4;
-        text-align: right;
-        padding-right: 5px;
-        color: white;
-        font-size: 0.8em;
-        line-height: 20px; /* Center text vertically */
-        transition: width 1s ease-in-out;
-    }
-
-    .card {
-      background: #1a1a1a;
-      border-radius: 15px;
-      padding: 20px;
-      width: 250px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    /* Hover Effect */
-    .card:hover {
-      transform: translateY(-10px) scale(1.05); /* lift + slight zoom */
-      box-shadow: 0 15px 40px rgba(0, 255, 255, 0.6); /* neon cyan glow */
-    }
-
-
-
-    /* Footer */
-    footer { margin-top: 40px; padding: 20px; color: #777; font-size: 0.9em; text-align: center; }
-
-    /* Rocket cursor */
-    .rocket-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      z-index: 10000;
-      transform: translate(-50%, -50%);
-    }
-
-    .trail {
-      position: fixed;
-      width: 7px;
-      height: 7px;
-      background: #ff9800;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0.7;
-      z-index: 9999;
-      animation: fade 0.6s linear forwards;
-    }
-
-    @keyframes fade { to { opacity: 0; transform: translateY(20px); } }
-  </style>
+  
+  <!-- SEO Optimization for Names -->
+  <title>Deshad Senevirathne | Space Tech & AI Engineer | University of Peradeniya</title>
+  <meta name="description" content="Deshad Senevirathne - Manufacturing & Industrial Engineering graduate from University of Peradeniya, specializing in Satellite Technology, Machine Learning, and Aerospace Data Science. Freelance AI Engineer.">
+  <meta name="keywords" content="Deshad Senevirathne, Deshad, Deshad Sithsara, Deshad University of Peradeniya, Deshad Peradeniya, satellite technology, machine learning, aerospace data science, space engineering, AI engineer Sri Lanka, freelance AI engineer">
+  <meta name="author" content="Deshad Senevirathne">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Deshad Senevirathne - Space Tech & AI">
+  <meta property="og:description" content="Exploring Space, Code, and Beyond | Manufacturing & Industrial Engineering Graduate - University of Peradeniya">
+  <meta property="og:image" content="https://deshadspace.github.io/images/share-image.png">
+  <meta property="og:url" content="https://deshadspace.github.io">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Deshad Senevirathne | Space Tech & AI">
+  <meta name="twitter:description" content="Satellite Technology, Machine Learning & Aerospace Data Science">
+  
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Deshad Senevirathne",
+    "alternateName": ["Deshad", "Deshad Sithsara"],
+    "url": "https://deshadspace.github.io",
+    "image": "https://deshadspace.github.io/images/share-image.png",
+    "sameAs": [
+      "https://github.com/deshadspace",
+      "https://www.linkedin.com/in/deshad-senevirathne",
+      "https://www.upwork.com/freelancers/~01ba999508e7722b17"
+    ],
+    "jobTitle": "Freelance AI Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    },
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "University of Peradeniya",
+      "url": "https://eng.pdn.ac.lk/"
+    },
+    "knowsAbout": ["Satellite Technology", "Machine Learning", "Aerospace Data Science", "Predictive Analytics", "Full-Stack Development"],
+    "description": "Manufacturing & Industrial Engineering graduate from University of Peradeniya, specializing in Satellite Technology, Machine Learning, and Aerospace Data Science"
+  }
+  </script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Rocket Cursor -->
-  <img src="rocket.png" id="rocket" class="rocket-cursor">
+  <!-- Rocket Cursor (Desktop Only) -->
+  <img src="rocket.png" id="rocket" class="rocket-cursor" alt="Rocket cursor">
 
   <!-- Navigation -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="research.html">Research</a>
-    <a href="articles.html">Articles</a>
-    <a href="downloads.html">Downloads</a>
-    <a href="contact.html">Contact</a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="research.html" class="nav-link">Research</a></li>
+        <li><a href="articles.html" class="nav-link">Articles</a></li>
+        <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Background Hero Section -->
-  <div class="background">
-    <div class="overlay"></div>
-    <div class="content">
-      <h1>Welcome to DeshadSpace 🚀</h1>
-      <p>Exploring Space, Code, and Beyond</p>
-      <a href="#latest-work" class="btn">Latest Work</a>
-    </div>
-  </div>
-
-  <!-- Latest Work -->
-  <section id="latest-work" class="container">
-    <h2 class="section-title">Latest Work</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>SENTINODE X</h3>
-        <p>Satellite Telemetry Simulator.</p>
-        <a href="projects/sentinodex.html" class="btn">Read More</a>
-      </div>
-
-      <div class="card">
-        <h3>GRACE + ML </h3>
-        <p>GRACE data downscaling for the Sri Lankan Region.</p>
-        <a href="research/GRACESL.html" class="btn">Read More</a>
-      </div>
-
-      <div class="card">
-        <h3>Smart Agriculture</h3>
-        <p>Paddy Yield Prediction For Sri Lanka using Stacked Ensemble Learning.</p>
-        <a href="research/smartagrisl.html" class="btn">Read More</a>
-      </div>
-
-      <div class="card">
-        <h3>Asteroid Mining</h3>
-        <p>Remote Resource Estimation of Near Earth Asteroids.</p>
-        <a href="research/asteroidest.html" class="btn">Read More</a>
+  <!-- Hero Section (Alien Invasion Easter Egg Trigger Zone) -->
+  <section id="home" class="hero">
+    <div class="hero-content fade-in">
+      <div class="hero-subtitle float">🚀 Welcome to the Future</div>
+      <h1 class="text-glow">DeshadSpace</h1>
+      <p class="hero-description">
+        Exploring Space, Code, and Beyond. Leveraging <strong>Machine Learning</strong>, 
+        <strong>Predictive Analytics</strong>, and <strong>Satellite Technology</strong> 
+        to push the boundaries of aerospace data science.
+      </p>
+      <div class="hero-buttons">
+        <a href="#work" class="btn btn-primary">Latest Work →</a>
+        <a href="contact.html" class="btn btn-glass">Get in Touch</a>
       </div>
     </div>
   </section>
 
-  <section id="about-me" class="container" 
-  style="padding: 60px 5%; max-width: 1000px; margin: 0 auto; 
-  display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
-  
-  <div style="flex: 1;">
-    <h2 style="margin-top: 0; color: #00bcd4;">Meet the Explorer</h2>
-    <p>
-      I'm <strong>Deshad</strong>, a Manufacturing & Industrial Engineering graduate transitioning my passion 
-      and expertise towards the exciting frontier of <strong>Satellite Technology</strong> 
-      and <strong>Aerospace Data Science</strong>. Graduating from the University of Peradeniya 
-      provided me with a robust foundation in engineering principles, which I now combine 
-      with advanced skills in <strong>Machine Learning</strong>, <strong>Predictive Analytics</strong>, 
-      and <strong>Full-Stack Development</strong>.
-    </p>
-    <p>
-      My goal is to leverage computational intelligence—from building neural networks for anomaly detection 
-      to programming reliable flight control systems to contribute to next-generation space missions 
-      and ground segment operations. Let's connect and build the future, in code and orbit!
-    </p>
-  </div>
-
-
-  <div style="flex-shrink: 0; text-align: center;">
-    <img src="images/me.png" alt="Deshad's Profile Photo" 
-      style="width: 400px; height: 400px; object-fit: cover; border-radius: 75%; 
-      border: 5px solid #ff9800; box-shadow: 0 0 20px rgba(0, 188, 212, 0.7);">
-  </div>
-</section>
-
-<section id="technical-expertise" class="container" style="padding: 40px 0 80px 0;">
-    <h2 class="section-title">Technical Expertise</h2>
-    
-    <div class="skills-grid">
-        
-        <div class="skills-category">
-            <h3>Programming & Development 💻</h3>
-
-            <div class="skill-item">
-              <span>Python (ML, Data Analysis, Simulation)</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 95%;">95%</div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <span>C / C++ (Flight/Embedded Systems)</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 25%;">25%</div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <span>Full-Stack: Node.js, JavaScript, HTML/CSS</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 70%;">70%</div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <span>SQL & Database Management</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 80%;">80%</div>
-              </div>
-            </div>
+  <!-- Latest Work Section -->
+  <section id="work" class="section">
+    <div class="container">
+      <h2 class="section-title gradient-text">Latest Work</h2>
+      
+      <div class="cards-grid">
+        <!-- Sentinode X -->
+        <div class="project-card fade-in" data-tilt>
+          <div class="card-icon">🛰️</div>
+          <span class="card-badge badge-active">Active Development</span>
+          <h3>SENTINODE X</h3>
+          <p>Satellite telemetry simulator with real-time anomaly detection using Neural Networks and predictive analytics.</p>
+          <a href="projects/sentinodex.html" class="btn btn-glass" style="margin-top: 1rem;">Explore Project →</a>
         </div>
 
-        <div class="skills-category">
-            <h3>Core Engineering & Data Science 🛰️</h3>
-            
-            <div class="skill-item">
-              <span>Deep Learning (NN, Keras/PyTorch)</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 90%;">90%</div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <span>Predictive Analytics (Tree Models, Ensembles)</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 95%;">95%</div>
-              </div>
-            </div>
-            
-            <div class="skill-item">
-              <span>Control Systems Engineering (ADCS)</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 60%;">60%</div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <span>Orbital Mechanics & Astrodynamics</span>
-              <div class="skill-bar-container">
-                <div class="skill-bar" style="width: 50%;">50%</div>
-              </div>
-            </div>
+        <!-- GRACE + ML -->
+        <div class="project-card fade-in" data-tilt>
+          <div class="card-icon">🌍</div>
+          <span class="card-badge badge-published">Research</span>
+          <h3>GRACE + ML</h3>
+          <p>Downscaling GRACE satellite data for Sri Lankan water storage predictions using XGBoost and ensemble methods.</p>
+          <a href="research/GRACESL.html" class="btn btn-glass" style="margin-top: 1rem;">Read Research →</a>
         </div>
 
+        <!-- Smart Agriculture -->
+        <div class="project-card fade-in" data-tilt>
+          <div class="card-icon">🌾</div>
+          <span class="card-badge badge-published">✓ Published</span>
+          <h3>Smart Agriculture</h3>
+          <p>Paddy yield prediction for Sri Lanka using Stacked Ensemble Learning. Published in SciForum IECAG 2025.</p>
+          <a href="research/smartagrisl.html" class="btn btn-glass" style="margin-top: 1rem;">View Publication →</a>
+        </div>
+
+        <!-- Asteroid Mining -->
+        <div class="project-card fade-in" data-tilt>
+          <div class="card-icon">☄️</div>
+          <span class="card-badge badge-progress">In Progress</span>
+          <h3>Asteroid Mining</h3>
+          <p>Remote resource estimation of Near Earth Asteroids using autoencoders and spectral analysis.</p>
+          <a href="research/asteroidest.html" class="btn btn-glass" style="margin-top: 1rem;">Learn More →</a>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-
-<!-- Footer -->
-<footer style="text-align: center; padding: 20px 0; background: #111; color: white; margin-top: 40px;">
-  <p>© 2025 DeshadSpace | 
-    <a href="https://github.com/deshadspace" style="color:#00bcd4; text-decoration: none;">GitHub</a>
-  </p>
-</footer>
-
-
-  <style>
-  .bullet { 
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgb(108, 255, 2);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1000;
-    transition: opacity 3s linear; /* fade effect */
-  }
-  .bullet.fade {
-    opacity: 0;
-  }
-  </style>
-
-
-
-  <!-- Rocket Cursor Script -->
-  <script>
-  const rocket = document.getElementById('rocket');
-  let lastX = window.innerWidth / 2;
-  let lastY = window.innerHeight / 2;
-  let invasionStarted = false;
-  let rocketAlive = true; // track rocket state
-  let hoverTimer;
-  const aliens = [];
-  const alienBullets = [];
-  const rocketBullets = [];
-
-  // Track mouse for rocket cursor and trail
-  document.addEventListener('mousemove', (e) => {
-    const x = e.clientX, y = e.clientY;
-
-    if (rocketAlive) {
-      rocket.style.left = x + 'px';
-      rocket.style.top = y + 'px';
-
-      const deltaX = x - lastX, deltaY = y - lastY;
-      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-      rocket.style.transform = `translate(-50%, -50%) rotate(${angle + 45}deg)`;
-    }
-
-    lastX = x;
-    lastY = y;
-
-    // Rocket/mouse trail
-    const trail = document.createElement('div');
-    trail.className = 'trail';
-    trail.style.left = (x - 4) + 'px';
-    trail.style.top = (y - 4) + 'px';
-    document.body.appendChild(trail);
-    setTimeout(() => trail.remove(), 600);
-  });
-
-  // Hover detection to start invasion
-  const bg = document.querySelector('.background');
-  bg.addEventListener('mouseenter', () => { 
-    hoverTimer = setTimeout(startInvasion, 30000); 
-  });
-  bg.addEventListener('mouseleave', () => { clearTimeout(hoverTimer); });
-
-  // Start invasion
-  function startInvasion() {
-    if (invasionStarted) return;
-    invasionStarted = true;
-    spawnAliens(7);
-    requestAnimationFrame(updateAliens);
-  }
-
-  // Spawn aliens
-  function spawnAliens(count) {
-    for (let i = 0; i < count; i++) {
-      const alien = document.createElement('img');
-      alien.src = 'images/alien.png'; 
-      alien.className = 'alien';
-      alien.style.width = '30px';
-      alien.style.height = '30px';
-      alien.style.position = 'absolute';
-      alien.style.top = Math.random() * window.innerHeight / 2 + 'px';
-      alien.style.left = Math.random() * window.innerWidth + 'px';
-      document.body.appendChild(alien);
-
-      aliens.push({
-        el: alien,
-        dx: (Math.random() * 2 - 1) * 2,
-        dy: (Math.random() * 2 - 1) * 2
-      });
-    }
-  }
-
-  // Update aliens and bullets
-  function updateAliens() {
-    aliens.forEach((alienObj, idx) => {
-      const { el } = alienObj;
-      let top = parseFloat(el.style.top);
-      let left = parseFloat(el.style.left);
-
-      top += alienObj.dy;
-      left += alienObj.dx;
-
-      // Bounce edges
-      if (top < 0 || top > window.innerHeight-30) alienObj.dy *= -1;
-      if (left < 0 || left > window.innerWidth-30) alienObj.dx *= -1;
-
-      el.style.top = top + 'px';
-      el.style.left = left + 'px';
-
-      // Random shooting
-      if (Math.random() < 0.02 && rocketAlive) shootAlienBullet(el);
-    });
-
-    // Update alien bullets
-    alienBullets.forEach((b, idx) => {
-      b.el.style.top = parseFloat(b.el.style.top) + b.vy + 'px';
-      b.el.style.left = parseFloat(b.el.style.left) + b.vx + 'px';
-
-      if (rocketAlive) {
-        const rRect = rocket.getBoundingClientRect();
-        const bRect = b.el.getBoundingClientRect();
-        if (!(bRect.right < rRect.left || bRect.left > rRect.right ||
-              bRect.bottom < rRect.top || bRect.top > rRect.bottom)) {
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title gradient-text">Meet the Explorer</h2>
+      
+      <div style="max-width: 900px; margin: 0 auto;">
+        <p class="fade-in" style="font-size: 1.125rem; text-align: center; margin-bottom: 2rem;">
+          I'm <strong class="gradient-text-accent">Deshad Senevirathne</strong>, a Manufacturing & Industrial Engineering graduate 
+          from the <strong>University of Peradeniya</strong>, transitioning my passion and expertise towards the exciting frontier of 
+          <strong class="gradient-text-accent">Satellite Technology</strong> and 
+          <strong class="gradient-text-accent">Aerospace Data Science</strong>.
+        </p>
+        
+        <div class="glass-card fade-in" style="margin: 2rem 0;">
+          <p style="margin-bottom: 1rem;">
+            My academic journey at the <strong>University of Peradeniya</strong> provided me with a robust foundation 
+            in engineering principles, which I now combine with advanced skills in 
+            <strong>Machine Learning</strong>, <strong>Predictive Analytics</strong>, 
+            and <strong>Full-Stack Development</strong>.
+          </p>
           
-          rocket.style.display = 'none';
-          rocketAlive = false;
-        }
-      }
+          <p style="margin-bottom: 0;">
+            My goal is to leverage computational intelligence—from building neural networks for anomaly detection 
+            to designing control algorithms for satellite systems—to contribute meaningfully to next-generation 
+            space missions and Earth observation initiatives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      if (parseFloat(b.el.style.top) < 0 || parseFloat(b.el.style.top) > window.innerHeight ||
-          parseFloat(b.el.style.left) < 0 || parseFloat(b.el.style.left) > window.innerWidth) {
-        b.el.remove();
-        alienBullets.splice(idx,1);
-      }
-    });
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title gradient-text">Technical Arsenal</h2>
+      
+      <div class="skills-grid">
+        <!-- Core Engineering & Data Science -->
+        <div class="skill-category fade-in">
+          <h3>🛰️ Core Engineering & Data Science</h3>
+          
+          <div class="skill-item">
+            <span>Deep Learning (NN, Keras/PyTorch)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 90%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Predictive Analytics (Tree Models, Ensembles)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 95%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Control Systems Engineering (ADCS)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 60%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Orbital Mechanics & Astrodynamics</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 50%;"></div>
+            </div>
+          </div>
+        </div>
 
-    // Update rocket bullets
-    rocketBullets.forEach((b, idx) => {
-      b.el.style.left = parseFloat(b.el.style.left) + b.dx + 'px';
-      b.el.style.top = parseFloat(b.el.style.top) + b.dy + 'px';
+        <!-- Software & Development -->
+        <div class="skill-category fade-in">
+          <h3>💻 Software & Development</h3>
+          
+          <div class="skill-item">
+            <span>Python (NumPy, Pandas, Scikit-learn)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 95%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Full-Stack Development (Node.js, React)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 85%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Database Systems (SQL, MongoDB)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 80%;"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <span>Version Control (Git, GitHub)</span>
+            <div class="skill-bar-container">
+              <div class="skill-bar" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      aliens.forEach((alienObj, aIdx) => {
-        const aRect = alienObj.el.getBoundingClientRect();
-        const bRect = b.el.getBoundingClientRect();
-        if (!(bRect.right < aRect.left || bRect.left > aRect.right ||
-              bRect.bottom < aRect.top || bRect.top > aRect.bottom)) {
-          alienObj.el.remove();
-          aliens.splice(aIdx,1);
-          b.el.remove();
-          rocketBullets.splice(idx,1);
-        }
-      });
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne | Built with passion for space exploration</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a> · 
+        <a href="https://linkedin.com/in/deshad-senevirathne" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
 
-      if (parseFloat(b.el.style.left) < 0 || parseFloat(b.el.style.left) > window.innerWidth ||
-          parseFloat(b.el.style.top) < 0 || parseFloat(b.el.style.top) > window.innerHeight) {
-        b.el.remove();
-        rocketBullets.splice(idx,1);
-      }
-    });
-
-    requestAnimationFrame(updateAliens);
-  }
-
-  // Alien shooting toward rocket
-  function shootAlienBullet(alienEl) {
-    const bullet = document.createElement('div');
-    bullet.className = 'bullet';
-    document.body.appendChild(bullet);
-
-    const aRect = alienEl.getBoundingClientRect();
-    const startX = aRect.left + aRect.width/2;
-    const startY = aRect.top + aRect.height/2;
-    bullet.style.left = startX + 'px';
-    bullet.style.top = startY + 'px';
-
-    const rRect = rocket.getBoundingClientRect();
-    const dx = (rRect.left + rRect.width/2) - startX;
-    const dy = (rRect.top + rRect.height/2) - startY;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const speed = 4;
-
-    alienBullets.push({ el: bullet, vx: dx/dist*speed, vy: dy/dist*speed });
-
-    // Fade bullet after 3s
-    setTimeout(() => bullet.classList.add('fade'), 0);
-    setTimeout(() => bullet.remove(), 3000);
-  }
-
-  // Rocket shooting toward mouse click
-  document.addEventListener('click', (e) => {
-    if (!invasionStarted || !rocketAlive) return;
-
-    const rRect = rocket.getBoundingClientRect();
-    const startX = rRect.left + rRect.width/2;
-    const startY = rRect.top + rRect.height/2;
-
-    const bullet = document.createElement('div');
-    bullet.className = 'bullet';
-    bullet.style.left = startX + 'px';
-    bullet.style.top = startY + 'px';
-    document.body.appendChild(bullet);
-
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const speed = 6;
-
-    rocketBullets.push({ el: bullet, dx: dx/dist*speed, dy: dy/dist*speed });
-
-    // Fade bullet after 3s
-    setTimeout(() => bullet.classList.add('fade'), 0);
-    setTimeout(() => bullet.remove(), 3000);
-  });
-  </script>
-
-  
-
-
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
-
-
-

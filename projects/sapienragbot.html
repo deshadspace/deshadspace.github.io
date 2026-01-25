@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAPIEN RAGBot | Deshad Senevirathne</title>
+  <meta name="description" content="Industrial-grade RAG system for welding defect diagnosis - Project by Deshad Senevirathne">
+  <meta name="keywords" content="RAG, welding defects, FAISS, semantic search, machine learning, Deshad Senevirathne">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../styles.css">
+  
+  <style>
+    .action-links {
+      margin: 30px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--gradient-accent);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-orange);
+    }
+    .btn-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(255,152,0,0.8);
+      color: white;
+    }
+    .btn-action.primary {
+      background: var(--gradient-primary);
+      box-shadow: var(--glow-cyan);
+    }
+    .btn-action.primary:hover {
+      box-shadow: 0 0 30px rgba(0,188,212,0.8);
+    }
+    .project-image {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--cyan);
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: var(--glass-shadow);
+    }
+    .feature-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      background: rgba(0,188,212,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--cyan);
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+    .stat-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    .architecture-box {
+      background: linear-gradient(135deg, rgba(0,188,212,0.1), rgba(255,152,0,0.1));
+      border-left: 4px solid var(--cyan);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+    .tech-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .tech-item {
+      background: rgba(255,152,0,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--orange);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .tech-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glow-orange);
+    }
+    .code-block {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--cyan);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+      color: #00ff00;
+    }
+    .confidence-metric {
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin: 5px;
+    }
+    .metric-high { background: rgba(76,175,80,0.3); color: #4CAF50; border: 1px solid #4CAF50; }
+    .metric-medium { background: rgba(255,152,0,0.3); color: #FF9800; border: 1px solid #FF9800; }
+    .metric-low { background: rgba(244,67,54,0.3); color: #F44336; border: 1px solid #F44336; }
+    @media(max-width:768px) {
+      .feature-stats, .tech-stack {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="../research.html" class="nav-link">Research</a></li>
+        <li><a href="../articles.html" class="nav-link">Articles</a></li>
+        <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text fade-in">⚡ SAPIEN RAGBot</h1>
+    <h2 class="fade-in" style="color: var(--orange); margin-bottom: 1rem;">Sustainable • Dystopian • Mechanical Knowledge Retrieval</h2>
+    <p class="fade-in"><strong>Status:</strong> <span class="card-badge badge-active">Active Development</span></p>
+    
+    <div class="glass-card fade-in">
+      <p>
+        An <strong>industrial-grade RAG (Retrieval-Augmented Generation) system</strong> for welding defect diagnosis, 
+        powered by semantic search and confidence scoring. Built for mechanical engineers who need reliable, 
+        traceable answers about welding failures, root causes, and remediation strategies.
+      </p>
+      <p>
+        SAPIEN RAGBot combines <strong>FAISS-powered vector similarity search</strong> with 
+        <strong>multi-dimensional confidence metrics</strong> to deliver precise defect matching with 
+        structured metadata including symptoms, causes, prevention methods, and remedies.
+      </p>
+    </div>
+
+    <div class="action-links fade-in">
+      <a href="https://github.com/deshadspace/sapien-ragbot" target="_blank" class="btn-action primary">
+        View on GitHub
+      </a>
+      <a href="https://youtu.be/xNuA5a4XYk8?si=jOigEagcUqKHji1z" target="_blank" class="btn-action">
+        Watch Demo Video
+      </a>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🌟 Key Features</h2>
+    <div class="tech-stack fade-in">
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">🔍 Semantic Search</h3>
+        <p style="font-size: 0.9rem;">FAISS-powered vector similarity for precise defect matching</p>
+      </div>
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">🧠 Confidence Scoring</h3>
+        <p style="font-size: 0.9rem;">Multi-dimensional confidence metrics</p>
+      </div>
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">📊 Rich Metadata</h3>
+        <p style="font-size: 0.9rem;">Structured defect data with full traceability</p>
+      </div>
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">🎨 Dystopian UI</h3>
+        <p style="font-size: 0.9rem;">Futuristic Streamlit interface with neon aesthetics</p>
+      </div>
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">⚡ Fast API</h3>
+        <p style="font-size: 0.9rem;">Production-ready FastAPI backend</p>
+      </div>
+      <div class="tech-item">
+        <h3 style="color: var(--cyan); margin-top: 0;">🔧 Mistral AI</h3>
+        <p style="font-size: 0.9rem;">Powered by Mistral embeddings</p>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🏗️ System Architecture</h2>
+    <div class="architecture-box fade-in">
+<pre style="color: var(--cyan); margin: 0;">
+┌─────────────────────────────────────────────────────────────┐
+│                     SAPIEN RAGBot System                    │
+└─────────────────────────────────────────────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+    ┌─────▼─────┐      ┌──────▼──────┐     ┌─────▼─────┐
+    │ Frontend  │      │   Backend   │     │ Knowledge │
+    │ Streamlit │◄────►│   FastAPI   │◄───►│   Base    │
+    └───────────┘      └─────────────┘     └───────────┘
+          │                   │                   │
+    • Dystopian UI      • Vector Search     • FAISS Index
+    • Query Input       • Confidence        • Embeddings
+    • Results Display   • REST API          • Metadata
+</pre>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">📊 Data Pipeline</h2>
+    <div class="glass-card fade-in">
+      <div class="architecture-box">
+<pre style="color: var(--orange); margin: 0;">
+PDFs → Text Extraction → Structured Chunking → Embeddings → FAISS Index
+                              ↓
+                        Mistral AI
+                              ↓
+                   Defect Name, Symptoms,
+                   Causes, Prevention, etc.
+</pre>
+      </div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">Pipeline Stages:</h3>
+      <ul style="list-style-position: inside; color: #ccc;">
+        <li style="margin-bottom: 0.5rem;"><strong>Stage 1:</strong> Extract text from PDF welding manuals using pdfplumber</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Stage 2:</strong> Extract structured defect data using Mistral AI</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Stage 3:</strong> Generate AI-powered summaries for each defect</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Stage 4:</strong> Create embeddings with Mistral embeddings model</li>
+        <li><strong>Stage 5:</strong> Build FAISS vector index for fast similarity search</li>
+      </ul>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🔧 Technology Stack</h2>
+    <div class="feature-stats fade-in">
+      <div class="stat-box">
+        <span class="stat-label">Backend Framework</span>
+        <span class="stat-number" style="font-size: 1.5rem;">FastAPI</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Frontend</span>
+        <span class="stat-number" style="font-size: 1.5rem;">Streamlit</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Vector Search</span>
+        <span class="stat-number" style="font-size: 1.5rem;">FAISS</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">AI Model</span>
+        <span class="stat-number" style="font-size: 1.5rem;">Mistral AI</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">PDF Processing</span>
+        <span class="stat-number" style="font-size: 1.5rem;">pdfplumber</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-label">Data Validation</span>
+        <span class="stat-number" style="font-size: 1.5rem;">Pydantic</span>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🧠 Confidence Scoring System</h2>
+    <div class="glass-card fade-in">
+      <p>
+        The system uses a <strong>multi-dimensional confidence model</strong> to ensure reliable defect diagnosis:
+      </p>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">1. Similarity Confidence (40%)</h3>
+      <p>Measures vector similarity using exponential decay of L2 distances:</p>
+      <div class="code-block">sim_scores = np.exp(-distances)</div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">2. Consensus Confidence (30%)</h3>
+      <p>Measures agreement across retrieved documents:</p>
+      <div class="code-block">consensus = 1.0 - (unique_defects - 1) / total_defects</div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">3. Completeness Confidence (30%)</h3>
+      <p>Checks field completeness (6 required fields):</p>
+      <div class="code-block">completeness = filled_fields / 6</div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">Final Score Calculation</h3>
+      <div class="code-block">final = (similarity × 0.4) + (consensus × 0.3) + (completeness × 0.3)</div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">Confidence Levels</h3>
+      <div style="margin-top: 1rem;">
+        <span class="confidence-metric metric-high">HIGH: ≥ 0.75</span>
+        <span class="confidence-metric metric-medium">MEDIUM: 0.50 - 0.74</span>
+        <span class="confidence-metric metric-low">LOW: < 0.50</span>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">📡 API Example</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Request</h3>
+      <div class="code-block">
+curl -X POST "http://127.0.0.1:8000/ask" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What causes porosity in aluminum TIG welding?"}'
+      </div>
+      
+      <h3 style="color: var(--cyan); margin-top: 2rem;">Response</h3>
+      <div class="code-block" style="color: #00ff00;">
+{
+  "answer": {
+    "defect_name": "Porosity",
+    "welding_process": "TIG",
+    "symptoms": "Small cavities in weld metal",
+    "root_causes": "Contaminated shielding gas, dirty base metal",
+    "prevention": "Use pure argon, clean metal surface",
+    "remedies": "Grind out and re-weld affected areas",
+    "material": "Aluminum",
+    "position": "All",
+    "source_doc": "AluminumWelding.txt",
+    "summary": "Porosity in aluminum TIG welding..."
+  },
+  "confidence": {
+    "confidence_score": 0.782,
+    "similarity_confidence": 0.856,
+    "consensus_confidence": 0.667,
+    "completeness_confidence": 0.833,
+    "confidence_level": "HIGH"
+  },
+  "sources": ["AluminumWelding.txt"]
+}
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🎨 User Interface</h2>
+    <div class="glass-card fade-in">
+      <p style="margin-bottom: 2rem;">
+        Experience the dystopian, futuristic interface of SAPIEN RAGBot with neon aesthetics and real-time animations.
+      </p>
+      
+      <img src="sapien1.png" alt="SAPIEN RAGBot Interface - Query Terminal" class="project-image fade-in">
+      
+      <img src="sapien2.png" alt="SAPIEN RAGBot Interface - Results Display" class="project-image fade-in" style="margin-top: 2rem;">
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">💡 Use Cases</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">1. Quality Control</h3>
+      <p>Quickly diagnose welding defects during inspection and identify root causes.</p>
+      
+      <h3 style="color: var(--cyan); margin-top: 1.5rem;">2. Training</h3>
+      <p>Educate new welders about common defects, their causes, and prevention methods.</p>
+      
+      <h3 style="color: var(--cyan); margin-top: 1.5rem;">3. Maintenance Planning</h3>
+      <p>Aggregate historical failure data to predict and prevent future issues.</p>
+      
+      <h3 style="color: var(--cyan); margin-top: 1.5rem;">4. Documentation</h3>
+      <p>Centralize welding knowledge from multiple manuals into a searchable system.</p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">🚧 Roadmap</h2>
+    <div class="glass-card fade-in">
+      <ul style="list-style-position: inside; color: #ccc;">
+        <li style="margin-bottom: 0.5rem;">✓ Multi-modal support (images, diagrams)</li>
+        <li style="margin-bottom: 0.5rem;">✓ Real-time re-ranking with cross-encoders</li>
+        <li style="margin-bottom: 0.5rem;">✓ User feedback loop for continuous improvement</li>
+        <li style="margin-bottom: 0.5rem;">⚡ Export reports to PDF</li>
+        <li style="margin-bottom: 0.5rem;">⚡ Multi-language support</li>
+        <li style="margin-bottom: 0.5rem;">⚡ Integration with PLM/ERP systems</li>
+        <li>⚡ Mobile app version</li>
+      </ul>
+    </div>
+
+    <div class="glass-card fade-in" style="margin-top: 3rem;">
+      <p style="text-align: center; font-size: 1.1rem;">
+        ⚡ <strong>Built with precision for sustainable mechanical excellence</strong> ⚡
+      </p>
+      <p style="text-align: center; color: var(--orange); margin-top: 1rem;">
+        Low-key, dystopian, futuristic vibes activated 🔋
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Music Emotion Volatility Prediction | Deshad Senevirathne</title>
+  <meta name="description" content="Predicting emotional volatility in music using acoustic features - Research by Deshad Senevirathne">
+  <meta name="keywords" content="music emotion, volatility prediction, acoustic features, machine learning, Deshad Senevirathne">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../styles.css">
+  
+  <style>
+    .action-links {
+      margin: 30px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--gradient-accent);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-orange);
+    }
+    .btn-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(255,152,0,0.8);
+      color: white;
+    }
+    .btn-action.primary {
+      background: var(--gradient-primary);
+      box-shadow: var(--glow-cyan);
+    }
+    .btn-action.primary:hover {
+      box-shadow: 0 0 30px rgba(0,188,212,0.8);
+    }
+    .project-image {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--cyan);
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: var(--glass-shadow);
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .results-table th,
+    .results-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,188,212,0.2);
+    }
+    .results-table th {
+      background: rgba(0,188,212,0.2);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    .results-table tr:hover {
+      background: rgba(0,188,212,0.1);
+    }
+    .metric-excellent { color: #4CAF50; font-weight: 600; }
+    .metric-moderate { color: #FF9800; font-weight: 600; }
+    .metric-low { color: #F44336; font-weight: 600; }
+    .feature-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      background: rgba(0,188,212,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--cyan);
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+    .stat-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    .hypothesis-box {
+      background: linear-gradient(135deg, rgba(0,188,212,0.1), rgba(255,152,0,0.1));
+      border-left: 4px solid var(--cyan);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--glow-cyan);
+      transition: transform 0.3s ease;
+    }
+    .video-container:hover {
+      transform: scale(1.02);
+    }
+    .video-thumbnail {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: #fff;
+      background: rgba(0, 188, 212, 0.7);
+      border-radius: 50%;
+      padding: 18px 28px;
+      pointer-events: none;
+      transition: background 0.3s ease;
+    }
+    .video-container:hover .play-button {
+      background: rgba(255, 152, 0, 0.8);
+    }
+    .snapshot-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .snapshot-gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border: 3px solid var(--cyan);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .snapshot-gallery img:hover {
+      transform: scale(1.02);
+      box-shadow: var(--glow-cyan);
+    }
+    @media(max-width:768px) {
+      .feature-stats {
+        grid-template-columns: 1fr;
+      }
+      .snapshot-gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../projects.html" class="nav-link">Projects</a></li>
+        <li><a href="../research.html" class="nav-link active">Research</a></li>
+        <li><a href="../articles.html" class="nav-link">Articles</a></li>
+        <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text fade-in">Music Emotion Volatility Prediction</h1>
+    <h2 class="fade-in" style="color: var(--orange); margin-bottom: 1rem;">A Feature-Based Analysis</h2>
+    <p class="fade-in"><strong>Status:</strong> <span class="card-badge badge-completed">Research Completed</span></p>
+    
+    <div class="glass-card fade-in">
+      <p>
+        This research investigates whether the <strong>emotional volatility of music</strong>—how much listeners' 
+        emotional responses vary—can be predicted from acoustic features, and whether this prediction differs 
+        from predicting average emotional responses.
+      </p>
+      <p>
+        While most music emotion recognition focuses on mean responses, this study explores the often-overlooked 
+        dimension of emotional variance, revealing which songs evoke consistent emotions versus those producing 
+        highly varied listener experiences.
+      </p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Presentation Video</h2>
+    <p class="fade-in">Watch the complete research presentation explaining methodology, findings, and implications.</p>
+
+    <div class="video-container fade-in">
+      <a href="https://youtu.be/LK0zMTWVmtw?si=zxq1N5TQGs8ziEsU" target="_blank" class="video-link">
+        <img src="Musicemotion.jpg" alt="Music Emotion Volatility Research Presentation" class="video-thumbnail">
+        <div class="play-button">▶</div>
+      </a>
+    </div>
+
+    <div class="action-links fade-in">
+      <a href="https://github.com/deshadspace/musicemo" target="_blank" class="btn-action">
+        View on GitHub
+      </a>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Research Hypothesis</h2>
+    <div class="hypothesis-box fade-in">
+      <h3 style="color: var(--cyan); margin-top: 0;">H1 — Emotional Volatility is Predictable</h3>
+      <p style="font-size: 1.1rem; margin-bottom: 0;">
+        Acoustic structure predicts variance of emotion better than, or at least comparably to, mean emotion.
+      </p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Dataset & Approach</h2>
+    <div class="glass-card fade-in">
+      <p>
+        The study utilized the <strong>PMEmo (Personalized Music Emotion Dataset)</strong>, which contains:
+      </p>
+      <ul style="list-style-position: inside; color: #ccc;">
+        <li style="margin-bottom: 0.5rem;">Perceptual acoustic features</li>
+        <li style="margin-bottom: 0.5rem;">Listener ratings across multiple contexts</li>
+        <li style="margin-bottom: 0.5rem;">Emotion labels (Arousal and Valence dimensions)</li>
+      </ul>
+      <p style="margin-top: 1rem;">
+        This dataset enabled cross-listener context sensitivity analysis, making it ideal for examining 
+        emotional variance across diverse listening experiences.
+      </p>
+    </div>
+
+    <div class="feature-stats fade-in">
+      <div class="stat-box">
+        <span class="stat-number">6,373</span>
+        <span class="stat-label">Initial Acoustic Features</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">767</span>
+        <span class="stat-label">Songs Analyzed</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Target Variables</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">227</span>
+        <span class="stat-label">Features for MEAN Targets</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">322</span>
+        <span class="stat-label">Features for STD Targets</span>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Methodology Pipeline</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Stage 1: Unsupervised Feature Pruning</h3>
+      <p><strong>Variance Filtering:</strong> Removed 279 near-constant features with variance below 1e-6</p>
+      <p><strong>Collinearity Reduction:</strong> Eliminated 2,254 redundant features with correlation exceeding 0.95</p>
+      <p><strong>Result:</strong> Feature space reduced from 6,373 to 3,840 features</p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Stage 2: Mutual Information Ranking</h3>
+      <p>Applied Pareto selection, retaining features accounting for top 20% of total mutual information per target:</p>
+      <ul style="list-style-position: inside; color: #ccc; margin-top: 1rem;">
+        <li>mean_A: 135 features selected</li>
+        <li>mean_V: 172 features selected</li>
+        <li>std_A: 184 features selected</li>
+        <li>std_V: 144 features selected</li>
+      </ul>
+      <p style="margin-top: 1rem; color: var(--orange); font-weight: 600;">
+        ⚠️ Critical Finding: Zero intersection among all four targets — predicting mean versus variance 
+        requires fundamentally different acoustic information.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Model Training</h3>
+      <ul style="list-style-position: inside; color: #ccc;">
+        <li style="margin-bottom: 0.5rem;"><strong>Algorithm:</strong> ElasticNet Regression</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Data Split:</strong> 70% Train / 20% Validation / 10% Test</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Preprocessing:</strong> Standardization after split to prevent data leakage</li>
+        <li><strong>Hyperparameter Optimization:</strong> Alpha and L1 ratio tuned via validation performance</li>
+      </ul>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Results: Static Feature Dataset</h2>
+    
+    <table class="results-table fade-in">
+      <thead>
+        <tr>
+          <th>Target</th>
+          <th>Train R²</th>
+          <th>Validation R²</th>
+          <th>Test R²</th>
+          <th>Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>mean_A</strong></td>
+          <td>0.797</td>
+          <td>0.780</td>
+          <td class="metric-excellent">0.707</td>
+          <td>Excellent — mean arousal is highly predictable</td>
+        </tr>
+        <tr>
+          <td><strong>mean_V</strong></td>
+          <td>0.551</td>
+          <td>0.562</td>
+          <td class="metric-moderate">0.493</td>
+          <td>Moderate — mean valence is predictable but weaker</td>
+        </tr>
+        <tr>
+          <td><strong>std_A</strong></td>
+          <td>0.234</td>
+          <td>0.039</td>
+          <td class="metric-low">0.220</td>
+          <td>Low — arousal variance is difficult to predict</td>
+        </tr>
+        <tr>
+          <td><strong>std_V</strong></td>
+          <td>0.107</td>
+          <td>0.029</td>
+          <td class="metric-low">-0.028</td>
+          <td>Unpredictable — valence variance not captured by features</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Results: Dynamic Feature Dataset</h2>
+    <div class="glass-card fade-in">
+      <p>
+        Given the poor volatility prediction from static features, I tested whether <strong>dynamic temporal statistics</strong> 
+        (computed from time-varying acoustic properties) would better capture emotional variance.
+      </p>
+    </div>
+
+    <table class="results-table fade-in">
+      <thead>
+        <tr>
+          <th>Target</th>
+          <th>Test R²</th>
+          <th>Best Alpha</th>
+          <th>Best L1 Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>mean_A</strong></td>
+          <td class="metric-excellent">0.657</td>
+          <td>0.001</td>
+          <td>0.1</td>
+        </tr>
+        <tr>
+          <td><strong>mean_V</strong></td>
+          <td class="metric-moderate">0.506</td>
+          <td>0.001</td>
+          <td>0.1</td>
+        </tr>
+        <tr>
+          <td><strong>std_A</strong></td>
+          <td class="metric-low">0.211</td>
+          <td>0.001</td>
+          <td>0.9</td>
+        </tr>
+        <tr>
+          <td><strong>std_V</strong></td>
+          <td class="metric-low">-0.009</td>
+          <td>0.01</td>
+          <td>0.7</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="glass-card fade-in" style="background: rgba(244,67,54,0.1); border-left: 4px solid #F44336;">
+      <h3 style="color: #F44336; margin-top: 0;">Hypothesis Outcome: Not Supported</h3>
+      <p>
+        Dynamic features produced similar results to static features, confirming that acoustic structure 
+        alone cannot reliably predict emotional volatility, particularly for valence.
+      </p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Visualization: Static Feature Results</h2>
+    <p class="fade-in">Predicted vs. actual emotion values for static acoustic features across all four targets.</p>
+    
+    <div class="snapshot-gallery fade-in">
+      <img src="Static1.png" alt="Static Features - Mean Arousal Prediction" class="fade-in">
+      <img src="Static2.png" alt="Static Features - Mean Valence Prediction" class="fade-in">
+      <img src="Static3.png" alt="Static Features - Arousal Volatility Prediction" class="fade-in">
+      <img src="Static4.png" alt="Static Features - Valence Volatility Prediction" class="fade-in">
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Visualization: Dynamic Feature Results</h2>
+    <p class="fade-in">Predicted vs. actual emotion values for dynamic temporal features across all four targets.</p>
+    
+    <div class="snapshot-gallery fade-in">
+      <img src="Dynamic1.png" alt="Dynamic Features - Mean Arousal Prediction" class="fade-in">
+      <img src="Dynamic2.png" alt="Dynamic Features - Mean Valence Prediction" class="fade-in">
+      <img src="Dynamic3.png" alt="Dynamic Features - Arousal Volatility Prediction" class="fade-in">
+      <img src="Dynamic4.png" alt="Dynamic Features - Valence Volatility Prediction" class="fade-in">
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Key Findings & Implications</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">1. Acoustic Determinism vs. Listener Factors</h3>
+      <p>
+        While acoustic features excellently predict <strong>mean arousal</strong> (R² = 0.707) and moderately 
+        predict <strong>mean valence</strong> (R² = 0.493), they fail to explain variance in emotional responses. 
+        This suggests emotional volatility arises from <strong>listener-specific factors</strong>—personal history, 
+        context, mood, cultural background—rather than acoustic structure.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">2. Distinct Feature Sets for Mean vs. Variance</h3>
+      <p>
+        The zero-intersection result in feature selection reveals that predicting average emotional response 
+        requires fundamentally different acoustic information than predicting variability. No single feature 
+        was important for all four prediction tasks.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">3. Implications for Music Recommendation Systems</h3>
+      <p>
+        Truly personalized music recommendation systems must account for <strong>both acoustic properties and 
+        listener-specific contextual factors</strong> to understand the full spectrum of emotional response. 
+        Systems that only consider acoustic features will miss the interpersonal variance that makes music 
+        experiences uniquely personal.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in" style="margin-top: 3rem;">
+      <p>
+        This research demonstrates that some aspects of musical emotion are <strong>acoustically determined</strong> 
+        (mean responses), while others emerge from the <strong>interaction between music and individual listeners</strong> 
+        (emotional variance). Understanding this distinction is crucial for advancing both music emotion recognition 
+        and personalized listening experiences.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        🎵 Future work will explore incorporating listener metadata, contextual information, and temporal dynamics 
+        to better model emotional volatility.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

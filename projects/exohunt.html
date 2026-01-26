@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ex0huntapp: Exoplanet Classification | Deshad Senevirathne</title>
+  <meta name="description" content="ML-powered exoplanet candidate classification tool - NASA Space Apps Challenge 2025 by Deshad Senevirathne">
+  <meta name="keywords" content="exoplanet, machine learning, NASA, space apps challenge, classification, Deshad Senevirathne">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../styles.css">
+  
+  <style>
+    .action-links {
+      margin: 30px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--gradient-accent);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-orange);
+    }
+    .btn-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(255,152,0,0.8);
+      color: white;
+    }
+    .btn-action.primary {
+      background: var(--gradient-primary);
+      box-shadow: var(--glow-cyan);
+    }
+    .btn-action.primary:hover {
+      box-shadow: 0 0 30px rgba(0,188,212,0.8);
+    }
+    .project-image {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--cyan);
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: var(--glass-shadow);
+    }
+    .feature-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      background: rgba(0,188,212,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--cyan);
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+    .stat-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .features-table th,
+    .features-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,188,212,0.2);
+    }
+    .features-table th {
+      background: rgba(0,188,212,0.2);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    .features-table tr:hover {
+      background: rgba(0,188,212,0.1);
+    }
+    .snapshot-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .snapshot-gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border: 3px solid var(--cyan);
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .snapshot-gallery img:hover {
+      transform: scale(1.02);
+      box-shadow: var(--glow-cyan);
+    }
+    @media(max-width:768px) {
+      .feature-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="../research.html" class="nav-link">Research</a></li>
+        <li><a href="../articles.html" class="nav-link">Articles</a></li>
+        <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text fade-in">ex0huntapp</h1>
+    <h2 class="fade-in" style="color: var(--orange); margin-bottom: 1rem;">Exoplanet Candidate Classification</h2>
+    <p class="fade-in"><strong>Status:</strong> <span class="card-badge badge-completed">Project Completed</span></p>
+    
+    <div class="glass-card fade-in">
+      <p>
+        <strong>ex0huntapp</strong> is a web-based machine learning tool developed for the 
+        <strong>NASA Space Apps Challenge 2025</strong> under the "Worlds Away" challenge. It assists scientists 
+        and researchers in quickly classifying exoplanet candidates into one of three categories: 
+        <strong>CONFIRMED PLANET</strong>, <strong>CANDIDATE</strong>, or <strong>FALSE POSITIVE</strong>.
+      </p>
+      <p>
+        The application features a robust ML pipeline utilizing stacked ensemble methods for high-accuracy 
+        predictions, built upon foundational planetary and stellar flux data.
+      </p>
+    </div>
+
+    <div class="action-links fade-in">
+      <a href="https://www.spaceappschallenge.org/2025/find-a-team/1mluclty/?tab=project" target="_blank" class="btn-action primary">
+        View on NASA Space Apps
+      </a>
+      <a href="https://github.com/deshadspace/ex0huntapp" target="_blank" class="btn-action">
+        View on GitHub
+      </a>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">✨ Key Features</h2>
+    <div class="glass-card fade-in">
+      <ul style="list-style-position: inside; color: #ccc;">
+        <li style="margin-bottom: 0.8rem;"><strong>Custom CSV Upload & Mapping:</strong> Users can upload any CSV dataset containing exoplanetary data and easily map their column headers to the model's required input features.</li>
+        <li style="margin-bottom: 0.8rem;"><strong>Stacked Ensemble Prediction:</strong> Utilizes high-performance ML models (XGBoost, Random Forest, CatBoost) in a stacking architecture to achieve highly accurate consensus predictions.</li>
+        <li style="margin-bottom: 0.8rem;"><strong>Model Stacking Options:</strong> Provides two distinct meta-model options for flexible prediction strategies.</li>
+        <li style="margin-bottom: 0.8rem;"><strong>Detailed Output:</strong> Returns a ZIP file containing individual CSV prediction files for each base model and a final CSV with stacked model predictions and certainty scores.</li>
+        <li><strong>Transparent Metrics:</strong> Displays performance metrics (Accuracy, Classification Report) for the selected stack, ensuring transparency in prediction quality.</li>
+      </ul>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">⚙️ Technical Architecture</h2>
+    
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Backend (Python/Flask)</h3>
+      <p>The backend handles file processing, feature engineering, model inference, and serves the prediction API.</p>
+      <ul style="list-style-position: inside; color: #ccc; margin-top: 1rem;">
+        <li style="margin-bottom: 0.5rem;"><strong>Framework:</strong> Flask with Flask-CORS enabled for frontend integration</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Data Processing:</strong> Pandas and NumPy for CSV handling, Scikit-learn's StandardScaler for normalization</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Feature Engineering:</strong> Dynamically generates complex polynomial and ratio features from 15 base features</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Base Models:</strong> XGBoost, Random Forest, CatBoost (pre-trained, loaded via joblib)</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Meta Model:</strong> Custom Multi-Layer Perceptron (MLP) implemented in PyTorch</li>
+        <li><strong>API Endpoint:</strong> /predict (POST) handles the entire pipeline from file upload to ZIP output</li>
+      </ul>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Frontend (HTML/CSS/JavaScript)</h3>
+      <p>The user interface provides an easy-to-use portal for prediction.</p>
+      <ul style="list-style-position: inside; color: #ccc; margin-top: 1rem;">
+        <li style="margin-bottom: 0.5rem;"><strong>Structure:</strong> Standard HTML5</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Styling:</strong> Custom CSS with a space-themed aesthetic using "Press Start 2P" font</li>
+        <li><strong>Logic:</strong> Pure JavaScript handles file reading, dynamic column mapping, async API calls, and file download management</li>
+      </ul>
+    </div>
+
+    <div class="feature-stats fade-in">
+      <div class="stat-box">
+        <span class="stat-number">15</span>
+        <span class="stat-label">Core Base Features</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Classification Categories</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Stacking Options</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Base ML Models</span>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">💻 Model Features</h2>
+    <div class="glass-card fade-in">
+      <p>The application requires 15 core base features (and their associated error margins) to run the prediction pipeline:</p>
+    </div>
+
+    <table class="features-table fade-in">
+      <thead>
+        <tr>
+          <th>Technical Name</th>
+          <th>Descriptive Name</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>insol / insol_err*</strong></td>
+          <td>Insolation Flux (Earth Flux)</td>
+          <td>Stellar insolation received by the planet, scaled to Earth</td>
+        </tr>
+        <tr>
+          <td><strong>period / period_err*</strong></td>
+          <td>Orbital Period (days)</td>
+          <td>The time required to complete one orbit</td>
+        </tr>
+        <tr>
+          <td><strong>prad / prad_err*</strong></td>
+          <td>Planetary Radius (Earth Radii)</td>
+          <td>Radius of the planet relative to Earth</td>
+        </tr>
+        <tr>
+          <td><strong>steff / steff_err*</strong></td>
+          <td>Stellar Temperature (K)</td>
+          <td>Effective temperature of the host star</td>
+        </tr>
+        <tr>
+          <td><strong>srad / srad_err*</strong></td>
+          <td>Stellar Radius (Solar Radii)</td>
+          <td>Radius of the host star relative to the Sun</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Model Stacking Architecture</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Stack 1: XGBoost + Random Forest → MLP</h3>
+      <p>XGBoost and Random Forest predictions are fed into a Multi-Layer Perceptron for final classification.</p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Stack 2: XGBoost + CatBoost → MLP</h3>
+      <p>XGBoost and CatBoost predictions are fed into a Multi-Layer Perceptron for final classification.</p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Application Screenshots</h2>
+    <p class="fade-in">Visual overview of the ex0huntapp interface and functionality.</p>
+    
+    <div class="snapshot-gallery fade-in">
+      <img src="exohunt1.png" alt="ex0huntapp Interface - Upload and Column Mapping" class="fade-in">
+      <img src="exohunt2.png" alt="ex0huntapp Results - Classification Output" class="fade-in">
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Setup and Installation</h2>
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">Prerequisites</h3>
+      <p>Python 3.8+ and pip installed</p>
+
+      <h3 style="color: var(--cyan); margin-top: 1.5rem;">Installation Steps</h3>
+      <ol style="color: #ccc; margin-left: 1.5rem;">
+        <li style="margin-bottom: 0.5rem;">Clone the repository</li>
+        <li style="margin-bottom: 0.5rem;">Install dependencies: <code style="background: rgba(0,188,212,0.2); padding: 2px 8px; border-radius: 4px;">pip install -r requirements.txt</code></li>
+        <li style="margin-bottom: 0.5rem;">Run the Flask server: <code style="background: rgba(0,188,212,0.2); padding: 2px 8px; border-radius: 4px;">python backend/app.py</code></li>
+        <li>Access the frontend by opening <code style="background: rgba(0,188,212,0.2); padding: 2px 8px; border-radius: 4px;">frontend/index.html</code> in your browser</li>
+      </ol>
+    </div>
+
+    <div class="glass-card fade-in" style="margin-top: 3rem;">
+      <p>
+        🌍 This project represents a contribution to exoplanet research by making advanced machine learning 
+        classification accessible through a user-friendly web interface. By combining multiple state-of-the-art 
+        models in an ensemble architecture, ex0huntapp delivers robust predictions to help researchers identify 
+        genuine exoplanet candidates from noisy observational data.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        🚀 Developed as part of NASA Space Apps Challenge 2025, demonstrating the power of collaborative 
+        innovation in space exploration and planetary science.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

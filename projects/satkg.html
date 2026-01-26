@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sat-KG-Pipeline: Satellite Fault Diagnosis | Deshad Senevirathne</title>
+  <meta name="description" content="AI-powered Knowledge Graph Pipeline for Satellite Power Systems Fault Diagnosis by Deshad Senevirathne">
+  <meta name="keywords" content="satellite, knowledge graph, fault diagnosis, NLP, AI, RDF, SPARQL, Deshad Senevirathne">
+  <meta name="author" content="Deshad Senevirathne">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../styles.css">
+  
+  <style>
+    .action-links {
+      margin: 30px 0;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-action {
+      display: inline-block;
+      padding: 12px 25px;
+      background: var(--gradient-accent);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-orange);
+    }
+    .btn-action:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(255,152,0,0.8);
+      color: white;
+    }
+    .feature-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .stat-box {
+      background: rgba(0,188,212,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid var(--cyan);
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      display: block;
+    }
+    .stat-label {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    .tech-tag {
+      display: inline-block;
+      background: rgba(0,188,212,0.2);
+      color: var(--cyan);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin: 5px 5px 5px 0;
+      border: 1px solid var(--cyan);
+    }
+    @media(max-width:768px) {
+      .feature-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="../rocket.png" id="rocket" class="rocket-cursor" alt="">
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">DeshadSpace</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../about.html" class="nav-link">About</a></li>
+        <li><a href="../projects.html" class="nav-link active">Projects</a></li>
+        <li><a href="../research.html" class="nav-link">Research</a></li>
+        <li><a href="../articles.html" class="nav-link">Articles</a></li>
+        <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: 120px;">
+    <h1 class="gradient-text fade-in">🛰️ Sat-KG-Pipeline</h1>
+    <h2 class="fade-in" style="color: var(--orange); margin-bottom: 1rem;">AI-Powered Knowledge Graph for Satellite Fault Diagnosis</h2>
+    <p class="fade-in"><strong>Year:</strong> 2025 | <strong>Status:</strong> <span class="card-badge badge-completed">Project Completed</span></p>
+    
+    <div class="glass-card fade-in">
+      <p>
+        <strong>Sat-KG-Pipeline</strong> is an intelligent system that transforms natural language troubleshooting 
+        inputs into a structured Knowledge Graph to assist satellite engineers in diagnosing faults in power systems. 
+        By integrating AI language models and semantic technologies, this pipeline enables automated fault reasoning 
+        by mapping ambiguous or high-level descriptions into machine-readable fault scenarios.
+      </p>
+    </div>
+
+    <div class="action-links fade-in">
+      <a href="https://github.com/deshadspace/Sat-KG-Pipeline" target="_blank" class="btn-action">
+        View on GitHub
+      </a>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Key Features</h2>
+    
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">🤖 NLP-Driven Fault Understanding</h3>
+      <p>
+        Uses co-reference resolution, tokenization, and chunk-based processing to extract key information from 
+        user inputs, transforming natural language troubleshooting descriptions into structured data.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">🕸️ Knowledge Graph Construction</h3>
+      <p>
+        Converts extracted insights into RDF triples and stores them in a SPARQL-compatible triplestore for 
+        efficient querying and fault pattern analysis.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">📚 Real-Time Information Augmentation</h3>
+      <p>
+        Leverages SerpAPI and OCR to enrich context from technical documents and online sources, providing 
+        comprehensive fault diagnosis support.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">⚡ Designed for Satellite Power Systems</h3>
+      <p>
+        Specifically tailored to handle diagnostic patterns and failure modes relevant to satellite electrical 
+        subsystems, ensuring domain-specific accuracy.
+      </p>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">Tech Stack</h2>
+    
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan); margin-top: 0;">Languages & Frameworks</h3>
+      <div>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">RDF</span>
+        <span class="tech-tag">SPARQL</span>
+      </div>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan); margin-top: 0;">Libraries & APIs</h3>
+      <div>
+        <span class="tech-tag">MistralAI</span>
+        <span class="tech-tag">SerpAPI</span>
+        <span class="tech-tag">Tesseract OCR</span>
+        <span class="tech-tag">spaCy</span>
+      </div>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan); margin-top: 0;">Techniques</h3>
+      <div>
+        <span class="tech-tag">Co-reference Resolution</span>
+        <span class="tech-tag">NLP Tokenization</span>
+        <span class="tech-tag">Chunking</span>
+        <span class="tech-tag">Semantic Graph Generation</span>
+      </div>
+    </div>
+
+    <h2 class="fade-in" style="margin-top: 3rem;">How It Works</h2>
+    
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">1. Input Processing</h3>
+      <p>
+        Engineers provide troubleshooting inputs in natural language describing observed faults or anomalies 
+        in satellite power systems.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">2. NLP Analysis</h3>
+      <p>
+        The system applies advanced NLP techniques including co-reference resolution and tokenization to extract 
+        key entities, relationships, and fault indicators from the input text.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">3. Knowledge Graph Construction</h3>
+      <p>
+        Extracted information is converted into RDF triples, creating a structured knowledge graph that represents 
+        fault scenarios, components, and their relationships.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">4. Information Enrichment</h3>
+      <p>
+        The pipeline augments the knowledge graph with additional context from technical documentation and online 
+        sources using SerpAPI and OCR capabilities.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in">
+      <h3 style="color: var(--cyan);">5. SPARQL Querying</h3>
+      <p>
+        Engineers can query the knowledge graph using SPARQL to identify similar fault patterns, retrieve 
+        diagnostic procedures, and access relevant troubleshooting information.
+      </p>
+    </div>
+
+    <div class="glass-card fade-in" style="margin-top: 3rem;">
+      <p>
+        🛰️ This pipeline bridges the gap between human expertise and machine reasoning, enabling faster and 
+        more accurate fault diagnosis in satellite power systems. By translating basic troubleshooting inputs 
+        into a structured, queryable knowledge base, satellite engineers can leverage collective knowledge and 
+        automated reasoning to maintain critical space infrastructure.
+      </p>
+      <p style="margin-top: 1.5rem;">
+        🔧 The system represents a significant advancement in applying AI and semantic web technologies to 
+        aerospace engineering challenges, demonstrating the power of knowledge graphs in specialized technical domains.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Deshad Senevirathne</p>
+      <p>
+        <a href="https://github.com/deshadspace" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
